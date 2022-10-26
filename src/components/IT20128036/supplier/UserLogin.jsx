@@ -138,7 +138,7 @@ export default class UserLogin extends Component {
 					</form>
 				</div>
 				<div className={styles.right}>
-					<h5>Are you new here ?</h5>
+					<h5>Are you new supplier ?</h5>
                     <Link to="/supplier/registration">
 						<button type="button" className={styles.white_btn}>
 							 Sign Up
