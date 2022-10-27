@@ -30,7 +30,7 @@ export default function SupplierDetails() {
             </div>
             <div className="col-md-8">
               <h3>
-                Personal Details &nbsp;
+                Personal Details &nbsp;&nbsp;
                 <a href="">
                   <i className="fa fa-edit text-success"></i>
                 </a>
