@@ -114,10 +114,10 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/view/vacancy/jobseeker"
+              href="/supplier/details?"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Vacancies
+              Supplier Profile
             </a>
           </li>
           <li className="nav-item">
