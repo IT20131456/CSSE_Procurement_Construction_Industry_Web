@@ -1,18 +1,40 @@
 import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import axios from "axios";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import NavBar from "../IT20128036/supplier/NavBar";
 
 export default function SupplierDetails() {
+
+   const [supplierDetails, setSupplierDetails] = useState("");
+  const [supplierName, setSupplierName] = useState([]); 
+  
+  useEffect(() => {
+    const userToken = localStorage.userToken;
+    const decoded = jwt_decode(userToken);
+    setSupplierName(decoded.name);
+    let name = supplierName;
+
+    axios
+      .get(`http://localhost:5000/supplier/details/${name}`)
+      .then((response) => {
+        setSupplierDetails(response.data.exsitingSupplierDetails);     
+      });
+    
+  }, [supplierName]);
+
+
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/img1.png";
   return (
     <div>
-      <div className="container text-center my-5">
-        <h1>Supplier Details</h1>
+       <NavBar />
+      
+      <div className="container text-center my-2">
+        <h1>Supplier Details {supplierName}</h1>
         <hr />
       </div>
       <div className="container" style={{ textAlign: "right" }}>
-        <button className="btn btn-outline-primary col-md-2 mx-3">
+        <button className="btn btn-warning col-md-2 mx-3">
           <i className="fa fa-eye"></i> View Supplier Items
         </button>
       </div>
@@ -32,7 +54,7 @@ export default function SupplierDetails() {
               <h3>
                 Personal Details &nbsp;
                 <a href="">
-                  <i className="fa fa-edit text-success"></i>
+                  <i className="fa fa-edit text-warning"></i>
                 </a>
               </h3>
               <div class="form-group row mt-4 mx-5">
@@ -42,9 +64,9 @@ export default function SupplierDetails() {
                 <div class="col-lg-8">
                   <input
                     type="text"
-                    class="form-control"
-                    id="suppliername"
+                    class="form-control"                  
                     placeholder="Enter Supplier Name"
+                    name="supplierName"
                     required
                   />
                 </div>
@@ -57,7 +79,7 @@ export default function SupplierDetails() {
                   <input
                     type="tel"
                     class="form-control"
-                    id="phonenumber"
+                    name="phoneNumber"
                     placeholder="Enter Phone Number"
                     pattern="[0-9]{10}"
                     required
@@ -72,7 +94,7 @@ export default function SupplierDetails() {
                   <input
                     type="email"
                     class="form-control"
-                    id="email"
+                    name="email"
                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
                     placeholder="Enter Email Address"
                   />
@@ -86,7 +108,7 @@ export default function SupplierDetails() {
                   <input
                     type="text"
                     class="form-control"
-                    id="location"
+                    name="location"
                     placeholder="Enter Location"
                     required
                   />
@@ -99,7 +121,7 @@ export default function SupplierDetails() {
                 <div class="col-lg-8">
                   <textarea
                     class="form-control"
-                    id="supplieritems"
+                    name="supplierItems"
                     placeholder="Enter Supplier Items"
                     maxLength={"150"}
                     required

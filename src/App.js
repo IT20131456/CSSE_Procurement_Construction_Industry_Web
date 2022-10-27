@@ -12,7 +12,7 @@ import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegist
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <Routes>  
         <Route path="/" element={<Sample/>} />
 
         <Route path="/supplier/details" element={<SupplierDetails/>} />
