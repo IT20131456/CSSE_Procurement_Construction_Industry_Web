@@ -8,6 +8,9 @@ import InvoiceDetails from "../src/components/IT20131456/SupplierDetails";
 import SupplierLogin from "./components/IT20128036/supplier/UserLogin"
 import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegistration"
 import UpdateSupplierDetails from "./components/IT20131456/UpdateSupplierDetails"
+import RequestedSippliers from "./components/IT20128036/staff/RequestedSuppliers";
+
+
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
 
         <Route path="/user/login" element={<SupplierLogin/>} />
         <Route path="/supplier/registration" element={<SupplierRegistration/>} />
+
+        <Route path="/supplier/req" element={<RequestedSippliers/>} />
+
+
 
       </Routes>
     </BrowserRouter>
