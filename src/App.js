@@ -7,6 +7,10 @@ import DeliveryDetails from "../src/components/IT20131456/SupplierDetails";
 import InvoiceDetails from "../src/components/IT20131456/SupplierDetails";
 import SupplierLogin from "./components/IT20128036/supplier/UserLogin"
 import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegistration"
+import ViewTendersStaff from "./components/IT20125202/ViewTendersStaff";
+import ViewTendersSuppliers from "./components/IT20125202/ViewTendersSuppliers";
+import ViewTenderDetailsStaff from "./components/IT20125202/ViewTenderDetailsStaff";
+import ViewTenderDetailsSuppliers from "./components/IT20125202/ViewTenderDetailsSuppliers";
 
 
 function App() {
@@ -23,6 +27,10 @@ function App() {
         <Route path="/user/login" element={<SupplierLogin/>} />
         <Route path="/supplier/registration" element={<SupplierRegistration/>} />
 
+        <Route path="/staff/tenders" element={<ViewTendersStaff/>} />
+        <Route path="/suppliers/tenders" element={<ViewTendersSuppliers/>} />
+        <Route path="/staff/tender/:id" element={<ViewTenderDetailsStaff/>} />
+        <Route path="/suppliers/tender/:id" element={<ViewTenderDetailsSuppliers/>} />
       </Routes>
     </BrowserRouter>
   );
