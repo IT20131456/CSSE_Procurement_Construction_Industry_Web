@@ -10,7 +10,7 @@ import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegist
 import UpdateSupplierDetails from "./components/IT20131456/UpdateSupplierDetails"
 import RequestedSippliers from "./components/IT20128036/staff/RequestedSuppliers";
 
-import ApprovedSupplier from "./components/IT20128036/staff/ApprovedSupplier";
+import CheckSupplier from "./components/IT20128036/staff/CheckSupplier";
 
 
 import ViewTendersStaff from "./components/IT20125202/ViewTendersStaff";
@@ -38,7 +38,7 @@ function App() {
 
 
 
-        <Route path="/edit/:id" element={<ApprovedSupplier/>}></Route>
+        <Route path="/supplier/check/:id" element={<CheckSupplier/>}></Route>
 
 
 
