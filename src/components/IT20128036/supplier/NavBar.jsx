@@ -49,7 +49,7 @@ class NavBar extends Component {
           if (value) {
             localStorage.removeItem("userToken");
 
-            window.location = "/supplier/login";
+            window.location = "/user/login";
           }
         });
       } else {
@@ -114,7 +114,7 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/supplier/details?"
+              href="/supplier/details"
               style={{ textDecoration: "none", color: "black" }}
             >
               Supplier Profile
