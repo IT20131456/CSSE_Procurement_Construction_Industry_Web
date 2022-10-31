@@ -8,6 +8,7 @@ import InvoiceDetails from "../src/components/IT20131456/SupplierDetails";
 import SupplierLogin from "./components/IT20128036/supplier/UserLogin"
 import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegistration"
 import RequestedSippliers from "./components/IT20128036/staff/RequestedSuppliers";
+import ApprovedSupplier from "./components/IT20128036/staff/ApprovedSupplier";
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Route path="/supplier/registration" element={<SupplierRegistration/>} />
 
         <Route path="/supplier/req" element={<RequestedSippliers/>} />
+
+
+        <Route path="/edit/:id" element={<ApprovedSupplier/>}></Route>
 
 
 
