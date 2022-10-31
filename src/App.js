@@ -10,6 +10,13 @@ import SupplierRegistration from"./components/IT20128036/supplier/SupplierRegist
 import UpdateSupplierDetails from "./components/IT20131456/UpdateSupplierDetails"
 import RequestedSippliers from "./components/IT20128036/staff/RequestedSuppliers";
 
+import ApprovedSupplier from "./components/IT20128036/staff/ApprovedSupplier";
+
+
+import ViewTendersStaff from "./components/IT20125202/ViewTendersStaff";
+import ViewTendersSuppliers from "./components/IT20125202/ViewTendersSuppliers";
+import ViewTenderDetailsStaff from "./components/IT20125202/ViewTenderDetailsStaff";
+import ViewTenderDetailsSuppliers from "./components/IT20125202/ViewTenderDetailsSuppliers";
 
 
 function App() {
@@ -29,6 +36,17 @@ function App() {
 
         <Route path="/supplier/req" element={<RequestedSippliers/>} />
 
+
+
+        <Route path="/edit/:id" element={<ApprovedSupplier/>}></Route>
+
+
+
+        
+        <Route path="/staff/tenders" element={<ViewTendersStaff/>} />
+        <Route path="/suppliers/tenders" element={<ViewTendersSuppliers/>} />
+        <Route path="/staff/tender/:id" element={<ViewTenderDetailsStaff/>} />
+        <Route path="/suppliers/tender/:id" element={<ViewTenderDetailsSuppliers/>} />
 
 
       </Routes>
