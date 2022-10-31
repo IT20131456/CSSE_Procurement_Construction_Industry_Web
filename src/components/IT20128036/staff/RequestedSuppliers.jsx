@@ -50,7 +50,7 @@ export default function RequestedSippliers() {
                           </i>
                         </div>
                         <div className="col-sm-4 mb-2">
-                          <a href="#" class="btn btn-danger rounded-pill">
+                          <a href={`/edit/${data._id}`} class="btn btn-danger rounded-pill">
                             Preview
                           </a>
 
@@ -89,7 +89,7 @@ export default function RequestedSippliers() {
                         </i>
                       </div>
                       <div className="col-sm-4 mb-2">
-                        <a href="#" class="btn btn-danger rounded-pill">
+                        <a href={`/edit/${data._id}`} class="btn btn-danger rounded-pill">
                           Preview
                         </a>
 
