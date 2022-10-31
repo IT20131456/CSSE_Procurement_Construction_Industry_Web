@@ -7,6 +7,9 @@ export const userRegister = newUser => {
             email: newUser.email,
             mobile: newUser.mobile,
             address: newUser.address,
+            image: newUser.image,
+            location: newUser.location,
+            supplierItems: newUser.supplierItems,
             type: newUser.type,
             password: newUser.password,
         })

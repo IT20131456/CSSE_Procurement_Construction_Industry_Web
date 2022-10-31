@@ -24,6 +24,9 @@ export default class CreateUser extends Component {
       email: "",
       mobile: "",
       address: "",
+      image:"img1.png",
+      location:"Not Updated",
+      supplierItems:"Not Updated",
       type: "supplier",
       password: "",
     };
@@ -45,6 +48,9 @@ export default class CreateUser extends Component {
       email: this.state.email,
       mobile: this.state.mobile,
       address: this.state.address,
+      image:this.state.image,      
+      location:this.state.location,
+      supplierItems:this.state.supplierItems,
       type: this.state.type,
       password: this.state.password,
     };
