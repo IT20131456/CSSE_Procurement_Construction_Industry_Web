@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Sample from "./components/sample";
+import Sample from "./components/IT20131456/CreateSupplierItemsModal";
 import SupplierDetails from "../src/components/IT20131456/SupplierDetails";
-import SupplierGoodsDetails from "../src/components/IT20131456/SupplierDetails";
+import SupplierGoodsDetails from "../src/components/IT20131456/SupplierGoodsDetails";
 import DeliveryDetails from "../src/components/IT20131456/SupplierDetails";
 import InvoiceDetails from "../src/components/IT20131456/SupplierDetails";
 import SupplierLogin from "./components/IT20128036/supplier/UserLogin"

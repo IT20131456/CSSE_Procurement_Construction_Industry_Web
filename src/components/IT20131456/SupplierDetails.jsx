@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import swal from "sweetalert";
 import NavBar from "../IT20128036/supplier/NavBar";
 
 export default function SupplierDetails() {
@@ -18,10 +19,8 @@ export default function SupplierDetails() {
     const decoded = jwt_decode(userToken);
     setSupplierId(decoded._id);
     setSupplierName(decoded.name);
-    setSupplierPno(decoded.mobile);
-    setSupplierEmail(decoded.email);
 
-
+console.log(decoded.mobile,"kk")
     let name = supplierName;
 
     axios
@@ -31,6 +30,8 @@ export default function SupplierDetails() {
         setSupplierImage(response.data.exsitingSupplierDetails[0].image);
         setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
         setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
+        setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
+        setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
      
       });
   }, [supplierName]);
@@ -45,10 +46,10 @@ export default function SupplierDetails() {
         <h1>Supplier Details</h1>
         <hr />
       </div>
-      <div className="container" style={{ textAlign: "right" }}>
+      <div className="container" style={{ textAlign: "right" }}><a href="/supplier/goods/details">
         <button className="btn btn-warning col-md-2 mx-3">
           <i className="fa fa-eye"></i> View Supplier Items
-        </button>
+        </button></a>
       </div>
 
       <div className="container bg-white p-3 mb-5 shadow  rounded mt-3 col-lg-10 ">
@@ -66,82 +67,83 @@ export default function SupplierDetails() {
               <h3>
                 Personal Details &nbsp;
                 <a href={`/update/supplier/details/${supplierId}`}>
-                  <i className="fa fa-edit text-warning"></i>
+                  <i className="fa fa-edit text-success"></i>
                 </a>
               </h3>
-              <div class="form-group row mt-4 mx-5">
-                <label for="suppliername" class="col-lg-4 col-form-label">
+              <div className="form-group row mt-4 mx-5">
+                <label for="suppliername" className="col-lg-4 col-form-label">
                   <h5>Supplier Name : </h5>
                 </label>
-                <div class="col-lg-8">
+                <div className="col-lg-8">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter Supplier Name"
                     name="supplierName"
                     value={supplierName}
-                    readOnly
+                   disabled
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
-                <label for="phonenumber" class="col-lg-4 col-form-label">
+              <div className="form-group row mt-4 mx-5">
+                <label for="phonenumber" className="col-lg-4 col-form-label">
                   <h5>Phone Number : </h5>
                 </label>
-                <div class="col-lg-8">
+                <div className="col-lg-8">
                   <input
                     type="tel"
-                    class="form-control"
+                    className="form-control"
                     name="phoneNumber"
                     placeholder="Enter Phone Number"
                     pattern="[0-9]{10}"
                     value={supplierPno}
-                    readOnly
+                   disabled
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
-                <label for="email" class="col-lg-4 col-form-label">
+              <div className="form-group row mt-4 mx-5">
+                <label for="email" className="col-lg-4 col-form-label">
                   <h5>Email Address : </h5>
                 </label>
-                <div class="col-lg-8">
+                <div className="col-lg-8">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     name="email"
                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
                     placeholder="Enter Email Address"
                     value={supplierEmail}
+                    disabled
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
-                <label for="location" class="col-lg-4 col-form-label">
+              <div className="form-group row mt-4 mx-5">
+                <label for="location" className="col-lg-4 col-form-label">
                   <h5>Location : </h5>
                 </label>
-                <div class="col-lg-8">
+                <div className="col-lg-8">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     name="location"
                     placeholder="Enter Location"
                     value={supplierLocation}
-                    readOnly
+                    disabled
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
-                <label for="supplieritems" class="col-lg-4 col-form-label">
-                  <h5>Supplier Iteams : </h5>
+              <div className="form-group row mt-4 mx-5">
+                <label for="supplieritems" className="col-lg-4 col-form-label">
+                  <h5>Supplier Items : </h5>
                 </label>
-                <div class="col-lg-8">
+                <div className="col-lg-8">
                   <textarea
-                    class="form-control "
+                    className="form-control "
                     name="supplierItems"
                     placeholder="Enter Supplier Items"
                     maxLength={"150"}
                     value={supplierItems}
-                    readOnly
+                   disabled
                   />
                 </div>
               </div>
