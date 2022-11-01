@@ -13,8 +13,8 @@ export default function CheckSupplier() {
   const [supplierMobile, setSupplierMobile] = useState(""); 
   const [supplierEmail, setSupplierEmail] = useState(""); 
   const [supplierLocation, setSupplierLocation] = useState(""); 
-  const [supApproved] = useState("approved");
-  const [supDecline] = useState("decline");
+  const [supApproved] = useState("Approved");
+  const [supDecline] = useState("");
   
   useEffect(() => {
    
@@ -111,7 +111,7 @@ export default function CheckSupplier() {
           <div className="row mt-3">
             <div className="col-md-4">
               <img
-                style={{ height: "100%", width: "100%" }}
+                style={{ height: "200px", width: "200px" }}
                 name="photo"
                 src={imageBasePath}
                 alt="Not loadded"
@@ -136,7 +136,7 @@ export default function CheckSupplier() {
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
+              {/* <div class="form-group row mt-4 mx-5">
                 <label for="phonenumber" class="col-lg-4 col-form-label">
                   <h5>Phone Number : </h5>
                 </label>
@@ -150,8 +150,8 @@ export default function CheckSupplier() {
                   disabled
                   />
                 </div>
-              </div>
-              <div class="form-group row mt-4 mx-5">
+              </div> */}
+              {/* <div class="form-group row mt-4 mx-5">
                 <label for="email" class="col-lg-4 col-form-label">
                   <h5>Email Address : </h5>
                 </label>
@@ -164,7 +164,7 @@ export default function CheckSupplier() {
                     disabled
                   />
                 </div>
-              </div>
+              </div> */}
               <div class="form-group row mt-4 mx-5">
                 <label for="location" class="col-lg-4 col-form-label">
                   <h5>Location : </h5>
@@ -186,6 +186,153 @@ export default function CheckSupplier() {
         </form>
       </div>
 
+<div className="container">
+<div className="row">
+
+<div className="col-sm-3">
+
+
+                            <i class="fa fa-telegram" aria-hidden="true">&nbsp;&nbsp;Sand</i>
+
+
+</div>
+
+
+<div className="col-sm-4">
+  20 Cubes
+
+  
+</div>
+
+<div className="col-sm-5">
+<a href="" onClick={decline} className="btn btn-success  mb-4 mx-4 me-4">Approve</a>
+<a href="" onClick={approve} className="btn btn-danger  mb-4 mx-4 me-4">Decline</a>
+
+
+
+</div>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+<div className="container">
+<div className="row">
+
+<div className="col-sm-3">
+
+
+                            <i class="fa fa-telegram" aria-hidden="true">&nbsp;&nbsp;Sand</i>
+
+
+</div>
+
+
+<div className="col-sm-4">
+  20 Cubes
+
+  
+</div>
+
+<div className="col-sm-5">
+<a href="" onClick={decline} className="btn btn-success  mb-4 mx-4 me-4">Approve</a>
+<a href="" onClick={approve} className="btn btn-danger  mb-4 mx-4 me-4">Decline</a>
+
+
+
+</div>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+<div className="container">
+<div className="row">
+
+<div className="col-sm-3">
+
+
+                            <i class="fa fa-telegram" aria-hidden="true">&nbsp;&nbsp;Sand</i>
+
+
+</div>
+
+
+<div className="col-sm-4">
+  20 Cubes
+
+  
+</div>
+
+<div className="col-sm-5">
+<a href="" onClick={decline} className="btn btn-success  mb-4 mx-4 me-4">Approve</a>
+<a href="" onClick={approve} className="btn btn-danger  mb-4 mx-4 me-4">Decline</a>
+
+
+
+</div>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<div className="container">
+<div className="row">
+
+<div className="col-sm-3">
+
+
+                            <i class="fa fa-telegram" aria-hidden="true">&nbsp;&nbsp;Sand</i>
+
+
+</div>
+
+
+<div className="col-sm-4">
+  20 Cubes
+
+  
+</div>
+
+<div className="col-sm-5">
+<a href="" onClick={decline} className="btn btn-success  mb-4 mx-4 me-4">Approve</a>
+<a href="" onClick={approve} className="btn btn-danger  mb-4 mx-4 me-4">Decline</a>
+
+
+
+</div>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
 <div className="row">
   <div className="col-sm-6"></div>
   <div className="col-sm-6">
@@ -194,7 +341,7 @@ export default function CheckSupplier() {
 </div>
 </div>
 
-      
+     
     </div>
   );
 }

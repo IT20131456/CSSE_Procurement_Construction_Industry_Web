@@ -18,6 +18,8 @@ import ViewTendersSuppliers from "./components/IT20125202/ViewTendersSuppliers";
 import ViewTenderDetailsStaff from "./components/IT20125202/ViewTenderDetailsStaff";
 import ViewTenderDetailsSuppliers from "./components/IT20125202/ViewTenderDetailsSuppliers";
 
+import ApprovedSuppriers from "./components/IT20128036/staff/ApprovedSuppliers";
+
 
 function App() {
   return (
@@ -42,11 +44,13 @@ function App() {
 
 
 
-        
+ 
         <Route path="/staff/tenders" element={<ViewTendersStaff/>} />
         <Route path="/suppliers/tenders" element={<ViewTendersSuppliers/>} />
         <Route path="/staff/tender/:id" element={<ViewTenderDetailsStaff/>} />
         <Route path="/suppliers/tender/:id" element={<ViewTenderDetailsSuppliers/>} />
+
+        <Route path="/approved/supplier" element={<ApprovedSuppriers/>}></Route>
 
 
       </Routes>
