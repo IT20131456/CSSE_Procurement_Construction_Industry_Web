@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
+import swal from "sweetalert";
 
-export default function ApprovedSupplier() {
+export default function CheckSupplier() {
   const { id } = useParams();
 
    const [supplierDetails, setSupplierDetails] = useState("");
@@ -12,6 +13,8 @@ export default function ApprovedSupplier() {
   const [supplierMobile, setSupplierMobile] = useState(""); 
   const [supplierEmail, setSupplierEmail] = useState(""); 
   const [supplierLocation, setSupplierLocation] = useState(""); 
+  const [supApproved] = useState("approved");
+  const [supDecline] = useState("decline");
   
   useEffect(() => {
    
@@ -28,6 +31,67 @@ export default function ApprovedSupplier() {
       });
     
   },[supplierName] );
+
+
+
+
+
+  const approve = (e) => {
+    e.preventDefault();
+    const data = {
+      supstatus: supApproved,
+    };
+
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Supplier Approved", "", "success");
+          setTimeout(() => {
+            window.location = "/supplier/req";
+          }, "3000");
+        }
+      });
+  };
+
+
+  
+  const decline = (e) => {
+    e.preventDefault();
+    const data = {
+      supstatus: supDecline,
+    };
+
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Supplier Restricted", "", "warning");
+          setTimeout(() => {
+            window.location = "/supplier/req";
+          }, "3000");
+        }
+      });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   var imageBasePath =
@@ -125,8 +189,8 @@ export default function ApprovedSupplier() {
 <div className="row">
   <div className="col-sm-6"></div>
   <div className="col-sm-6">
-<a href="" className="btn btn-danger  mb-4 mx-4 me-4">Restrict Supplier</a>
-<a href="" className="btn btn-primary  mb-4 mx-4 me-4">Approve Supplier</a>
+<a href="" onClick={decline} className="btn btn-danger  mb-4 mx-4 me-4">Restrict Supplier</a>
+<a href="" onClick={approve} className="btn btn-primary  mb-4 mx-4 me-4">Approve Supplier</a>
 </div>
 </div>
 
