@@ -33,7 +33,7 @@ export default function ViewTenderDetailsSuppliers() {
     }).catch((err) => {
       alert(err.message);
     })
-  }, []);
+  }, [id]);
 
   const onApprove = () => { }
 
@@ -51,23 +51,20 @@ export default function ViewTenderDetailsSuppliers() {
             <h6> Items</h6>
           </div>
           <div className="col-md-6">
-            {tender.items.map((item, index) => (
-              <p key={index}>
-                <h5>Item {index + 1}</h5>
+              <p>
                 <div className='row'>
                   <div className='col-md-6'> Item </div>
-                  <div className='col-md-6'> {item.name} </div>
+                  <div className='col-md-6'> {tender.items.name} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Size </div>
-                  <div className='col-md-6'> {item.size} </div>
+                  <div className='col-md-6'> {tender.items.size} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Quantity </div>
-                  <div className='col-md-6'> {item.quantity} </div>
+                  <div className='col-md-6'> {tender.items.quantity} </div>
                 </div>
               </p>
-            ))}
           </div>
         </div>
         <hr />
