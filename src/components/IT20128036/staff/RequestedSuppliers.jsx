@@ -53,9 +53,12 @@ export default function RequestedSippliers() {
                           <a href={`/supplier/check/${data._id}`} class="btn btn-danger rounded-pill">
                             Preview
 
-                           
+                            <span class="position-absolute top-0 start-100 translate-middle badge  bg-success">
+    {data.supstatus}
+    <span class="visually-hidden">unread messages</span>
+  </span>
                           </a>
-
+                          <br></br>
                           <a href="#" class="btn btn-primary mt-2 rounded-pill">
                             &nbsp;&nbsp;Action
                           </a>
@@ -93,9 +96,14 @@ export default function RequestedSippliers() {
                       <div className="col-sm-4 mb-2">
                         <a href={`/supplier/check/${data._id}`} class="btn btn-danger rounded-pill">
                           Preview
-                        </a>
 
-                        <a href="#" class="btn btn-primary mt-2 rounded-pill">
+                          <span class="position-absolute top-0 start-100 translate-middle badge  bg-success">
+    {data.supstatus}
+    <span class="visually-hidden">unread messages</span>
+  </span>
+                        </a>
+<br></br>
+                        <a href="#" class="btn btn-primary mt-2  rounded-pill">
                           &nbsp;&nbsp;Action
                         </a>
                       </div>
