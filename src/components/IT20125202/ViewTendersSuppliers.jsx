@@ -11,7 +11,7 @@ export default function ViewTendersSuppliers() {
 
     React.useEffect(() => {
         axios.get('http://localhost:5000/tender/getall').then((res) => {
-            const receivedTenders = res.data.exsitingTenders;
+            const receivedTenders = res.data.existingTenders;
             // filter tenders by status and store
             const filteredTenders = receivedTenders.filter(tender => tender.status === 'Waiting for a supplier');
 

@@ -9,7 +9,7 @@ export default function ViewTenderDetailsStaff() {
   const [tender, setTender] = React.useState({
     siteManagerID: '',
     siteManagerName: '',
-    items: [],
+    items: {},
     status: '',
     expectedBudget: 0,
     acceptedSupplier: '',
@@ -19,7 +19,7 @@ export default function ViewTenderDetailsStaff() {
 
   React.useEffect(() => {
     axios.get(`http://localhost:5000/tender/get/${id}`).then((res) => {
-      const receivedTender = res.data.exsitingTender;
+      const receivedTender = res.data.existingTender;
       setTender({
         siteManagerID: receivedTender.siteManagerID,
         siteManagerName: receivedTender.siteManagerName,
@@ -33,7 +33,7 @@ export default function ViewTenderDetailsStaff() {
     }).catch((err) => {
       alert(err.message);
     })
-  }, []);
+  }, [id]);
 
   const onReject = () => { }
 
@@ -71,31 +71,28 @@ export default function ViewTenderDetailsStaff() {
             <h6> Items</h6>
           </div>
           <div className="col-md-6">
-            {tender.items.map((item, index) => (
-              <p key={index}>
-                <h5>Item {index + 1}</h5>
+            <p>
                 <div className='row'>
                   <div className='col-md-6'> Item </div>
-                  <div className='col-md-6'> {item.name} </div>
+                  <div className='col-md-6'> {tender.items.name} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Size </div>
-                  <div className='col-md-6'> {item.size} </div>
+                  <div className='col-md-6'> {tender.items.size} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Quantity </div>
-                  <div className='col-md-6'> {item.quantity} </div>
+                  <div className='col-md-6'> {tender.items.quantity} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Order Status </div>
-                  <div className='col-md-6'> {item.orderStatus} </div>
+                  <div className='col-md-6'> {tender.items.orderStatus} </div>
                 </div>
                 <div className='row'>
                   <div className='col-md-6'> Received Amount </div>
-                  <div className='col-md-6'> {item.receivedAmount} </div>
+                  <div className='col-md-6'> {tender.items.receivedAmount} </div>
                 </div>
               </p>
-            ))}
           </div>
         </div>
         <hr />
