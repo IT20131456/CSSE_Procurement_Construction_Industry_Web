@@ -15,6 +15,7 @@ export default function SupplierDetails() {
   const [validateAlert, setValidateAlert] = useState(false);
   const [validateAlertSuccess, setValidateAlertSuccess] = useState(false);
 
+    //access backend data using axios
   useEffect(() => {
     axios.get(`http://localhost:5000/item/get/${id}`).then((response) => {
       console.log(response.data.exsitingItems);

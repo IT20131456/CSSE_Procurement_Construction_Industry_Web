@@ -16,6 +16,7 @@ export default function SupplierDetails() {
   const [validateAlert, setValidateAlert] = useState(false);
   const [validateAlertSuccess, setValidateAlertSuccess] = useState(false);
 
+    //access backend data using axios
   useEffect(() => {
     axios.get(`http://localhost:5000/supplier/${id}`).then((response) => {
       console.log(response.data.exsitingSupplierDetails);
@@ -30,7 +31,7 @@ export default function SupplierDetails() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+//form validatios with phoone number nad email
     if (!supplierPno.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
       setValidateAlert(true);
       setFromValidate("Please Input Valid Phone Number");
