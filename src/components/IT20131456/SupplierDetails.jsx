@@ -20,7 +20,6 @@ export default function SupplierDetails() {
     setSupplierId(decoded._id);
     setSupplierName(decoded.name);
 
-console.log(decoded.mobile,"kk")
     let name = supplierName;
 
     axios
@@ -29,10 +28,11 @@ console.log(decoded.mobile,"kk")
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setSupplierImage(response.data.exsitingSupplierDetails[0].image);
         setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
-        setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
+        setSupplierItems(
+          response.data.exsitingSupplierDetails[0].supplierItems
+        );
         setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
         setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
-     
       });
   }, [supplierName]);
 
@@ -46,18 +46,21 @@ console.log(decoded.mobile,"kk")
         <h1>Supplier Details</h1>
         <hr />
       </div>
-      <div className="container" style={{ textAlign: "right" }}><a href="/supplier/goods/details">
-        <button className="btn btn-warning col-md-2 mx-3">
-          <i className="fa fa-eye"></i> View Supplier Items
-        </button></a>
+      <div className="container" style={{ textAlign: "right" }}>
+        <a href="/supplier/items/details">
+          <button className="btn btn-warning col-md-2 mx-3">
+            <i className="fa fa-eye"></i> View Supplier Items
+          </button>
+        </a>
       </div>
 
       <div className="container bg-white p-3 mb-5 shadow  rounded mt-3 col-lg-10 ">
         <form>
           <div className="row mt-3">
             <div className="col-md-4 p-5">
-              <img className="border border-dark"
-                style={{ height: "100%", width: "100%",borderRadius:"50%" }}
+              <img
+                className="border border-dark"
+                style={{ height: "100%", width: "100%", borderRadius: "50%" }}
                 name="photo"
                 src={imageBasePath + supplierImage}
                 alt="Not loadded"
@@ -81,7 +84,7 @@ console.log(decoded.mobile,"kk")
                     placeholder="Enter Supplier Name"
                     name="supplierName"
                     value={supplierName}
-                   disabled
+                    disabled
                   />
                 </div>
               </div>
@@ -97,7 +100,7 @@ console.log(decoded.mobile,"kk")
                     placeholder="Enter Phone Number"
                     pattern="[0-9]{10}"
                     value={supplierPno}
-                   disabled
+                    disabled
                   />
                 </div>
               </div>
@@ -143,7 +146,7 @@ console.log(decoded.mobile,"kk")
                     placeholder="Enter Supplier Items"
                     maxLength={"150"}
                     value={supplierItems}
-                   disabled
+                    disabled
                   />
                 </div>
               </div>

@@ -1,202 +1,187 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
+import jwt_decode from "jwt-decode";
 
-function CreateSupplierItemsModal() {
-  const [inputFields, setInputFields] = useState([]);
-  const [retrivew, setRetrivew] = useState([]);
-  const [subItem, setSubItem] = useState("");
-  const [availability, setAvailability] = useState("");
+
+export default function CreateSupplierItemsModal(props) {
+  const [supplierDetails, setSupplierDetails] = useState([]);
+  const [supplierId, setSupplierId] = useState([]);
+  const [supplierName, setSupplierName] = useState([]);
+  const [name, setName] = useState([]);
+  const [itemName, setItemName] = useState("");
+  const [stocks, setStocks] = useState("");
   const [price, setPrice] = useState("");
+  const [fromValidate, setFromValidate] = useState("");
+  const [fromValidateSuccess, setfromValidateSuccess] = useState("");
+  const [validateAlert, setValidateAlert] = useState(false);
+  const [validateAlertSuccess, setValidateAlertSuccess] = useState(false);
 
-  const addInputField = () => {
-    setInputFields([
-      ...inputFields,
-      {
-        subItem: "",
-        availability:"",
-        price:""
-      },
-    ]);
-  };
-  const removeInputFields = (index) => {
-    const rows = [...inputFields];
-    rows.splice(index, 1);
-    setInputFields(rows);
-  };
-  const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target;
-    const list = [...inputFields];
-    list[index][name] = value;
-    setInputFields(list);
-  };
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  const onSubmit = () => {
-    var names = inputFields.map(function (inputField) {
-      return inputField["subItem","availability","price"];
-    });
+    if (itemName === "") {
+      setValidateAlert(true);
+      setFromValidate("Please Enter Item Name");
+    } else if (stocks === "") {
+      setValidateAlert(true);
+      setFromValidate("Please Input Available stocks count");
+    } else if (price === "") {
+      setValidateAlert(true);
+      setFromValidate("Please Input Item Price");
+    } else {
+      setValidateAlertSuccess(true);
+      setfromValidateSuccess("Successfully Data Added!");
+    }
 
-    const data = 
-{
-  "sItem":[
-{
-  subItem: names.toString(),
-  availability: names.toString(),
-  price: names.toString(),
-},
-{
-  
-}
+    const data = {
+      supplierName: name,
+      itemName: itemName,
+      stocks: stocks,
+      price: price,
+    };
 
-  ]
-}
-
-
-
-
-
-      
-
-    
-console.log(data)
-
+    console.log(data);
     axios.post(`http://localhost:5000/add/item`, data).then((res) => {
       if (res.data.success) {
-        console.log("success");
+        console.log(res.data);
+        swal("Vacancy created successfully", "", "success");
 
-        setSubItem("");
-        setAvailability("");
+        setTimeout(() => {
+          window.location = "/supplier/items/details";
+        }, "3000");
+
+        setName("");
+        setItemName("");
+        setStocks("");
         setPrice("");
       }
     });
-
-    setRetrivew(names.toString());
   };
 
+  useEffect(() => {
+    const userToken = localStorage.userToken;
+    const decoded = jwt_decode(userToken);
+    setSupplierId(decoded._id);
+    setSupplierName(decoded.name);
+
+    let name = supplierName;
+
+    axios
+      .get(`http://localhost:5000/supplier/details/${name}`)
+      .then((response) => {
+        setSupplierDetails(response.data.exsitingSupplierDetails);
+        setName(response.data.exsitingSupplierDetails[0].name);
+      });
+  }, [supplierName]);
+
   return (
-    <div className="container">
-      <button
-        type="button"
-        className="btn btn-warning"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <i className="fa fa-plus"></i>&nbsp; Add New Item
-      </button>
-      &nbsp;&nbsp;
-      <div className="modal" id="exampleModal">
-        <div className="modal-dialog modal-dialog-scrollable modal-lg pb-5">
-          <div className="modal-content ">
-            <div className="modal-header">
-              <div className="text-center">
-                <h3 className="modal-title">
-                  <i className="fa fa-briefcase"></i>&nbsp;Add New Supplier
-                  Items
-                </h3>
+    <div>
+      <div className="container">
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i className="fa fa-plus"></i>&nbsp; Add New Item
+        </button>
+        <div className="modal" id="exampleModal">
+          <div className="modal-dialog modal-dialog-scrollable modal-md pb-5">
+            <div className="modal-content ">
+              <div className="modal-header">
+                <div className="text-center">
+                  <h3 className="modal-title">
+                    <i className="fa fa-briefcase"></i>&nbsp; Add New Item
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
               </div>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-              ></button>
-            </div>
-            <br />          
-            <div className="modal-body">
-              <div className="row" style={{ overflowX: "hidden" }}>
-                <div className="col-md-12" style={{ marginLeft: "60px" }}>
-            
-                  {/* <div className="col-md-10">
-                    <strong>Item Name :</strong>
-                    <input
-                      type="text"
-                      className="form-control mt-2"
-                      placeholder="Enter Item Name"
-                      name="itemName"
-                      value=""
-                    />
-                  </div> */}
-
-                  {inputFields.map((data, index) => {
-                    const { subItem, availability, price } = data;
-                    return (
-                      <div className=" my-3" key={index}>
-                        <div className="row">
-                          <div className="col md-3">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                onChange={(evnt) => handleChange(index, evnt)}
-                                value={subItem}
-                                name="subItem"
-                                className="form-control"
-                                placeholder="Sub item name"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="col md-3">
-                            <div className="form-group">
-                              <input
-                                type="number"
-                                onChange={(evnt) => handleChange(index, evnt)}
-                                value={availability}
-                                name="availability"
-                                className="form-control"
-                                placeholder="Availabilty"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="col md-3">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                onChange={(evnt) => handleChange(index, evnt)}
-                                value={price}
-                                name="price"
-                                className="form-control"
-                                placeholder="Price Rs :-"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="col md-3">
-                            {inputFields.length !== 1 ? (
-                              <button
-                                className="btn btn-outline-danger"
-                                onClick={removeInputFields}
-                              >
-                                x
-                              </button>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </div>{" "}
-                      </div>
-                    );
-                  })}
-
-                  <div className="row mt-5 mb-3">
-                    <div className="col-sm-12">
+              <br />
+              <div className="mx-2">
+                {validateAlert ? (
+                  <p>
+                    <div class="alert alert-danger" role="alert">
+                      {fromValidate}
+                    </div>
+                  </p>
+                ) : (
+                  <p></p>
+                )}
+                {validateAlertSuccess ? (
+                  <p>
+                    <div class="alert alert-success" role="alert">
+                      {fromValidateSuccess}
+                    </div>
+                  </p>
+                ) : (
+                  <p></p>
+                )}
+              </div>
+              <div className="modal-body">
+                <form onSubmit={onSubmit}>
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <strong>
+                        Item Name <span className="_label" />
+                      </strong>
+                      <input
+                        type="text"
+                        className="form-control mt-2"
+                        name="itemname"
+                        placeholder="Enter Item Name"
+                        onChange={(e) => setItemName(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  &nbsp;
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <strong>
+                        Availabile Stocks <span className="_label" />
+                      </strong>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="stocks"
+                        placeholder="Enter Value"
+                        onChange={(e) => setStocks(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  &nbsp;
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <strong>
+                        Item Price
+                        <span className="_label" />
+                      </strong>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="price"
+                        placeholder="Enter Item Price"
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  &nbsp;
+                  <div className=" my-4 mx-3">
+                    <div className="form-group text-center">
                       <button
-                        className="btn btn-outline-success "
-                        onClick={addInputField}
+                        className="btn btn-primary col-md-4"
+                        type="submit"
                       >
-                        Add New
-                      </button>
-                      &nbsp; &nbsp; &nbsp;
-                      <button
-                        className="btn btn-outline-primary "
-                        onClick={onSubmit}
-                      >
-                        Save
+                        Submit
                       </button>
                     </div>
-                  </div>             
-                </div>
+                  </div>
+                </form>
               </div>
-              {retrivew}
-              <div className="col-sm-4"></div>
             </div>
           </div>
         </div>
@@ -204,4 +189,3 @@ console.log(data)
     </div>
   );
 }
-export default CreateSupplierItemsModal;

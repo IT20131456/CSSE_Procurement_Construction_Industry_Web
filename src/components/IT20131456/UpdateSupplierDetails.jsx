@@ -6,8 +6,6 @@ import NavBar from "../IT20128036/supplier/NavBar";
 
 export default function SupplierDetails() {
   const { id } = useParams();
-  const [supplierDetails, setSupplierDetails] = useState([]);
-  const [supplierId, setSupplierId] = useState([]);
   const [supplierName, setSupplierName] = useState("");
   const [supplierPno, setSupplierPno] = useState("");
   const [supplierEmail, setSupplierEmail] = useState("");
@@ -15,7 +13,6 @@ export default function SupplierDetails() {
   const [supplierImage, setSupplierImage] = useState("");
   const [supplierItems, setSupplierItems] = useState();
   const [fromValidate, setFromValidate] = useState("");
-  const [fromValidateSuccess, setfromValidateSuccess] = useState("");
   const [validateAlert, setValidateAlert] = useState(false);
   const [validateAlertSuccess, setValidateAlertSuccess] = useState(false);
 
