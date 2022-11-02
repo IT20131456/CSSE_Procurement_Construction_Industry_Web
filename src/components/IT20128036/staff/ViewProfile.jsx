@@ -3,7 +3,9 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import swal from "sweetalert";
 import NavBar from "../supplier/NavBar";
+import { useParams } from "react-router-dom";
 
+//this function is use to show specific supplier profile
 export default function ViewProfile() {
   const [supplierDetails, setSupplierDetails] = useState([]);
   const [supplierId, setSupplierId] = useState([]);
@@ -13,18 +15,19 @@ export default function ViewProfile() {
   const [supplierLocation, setSupplierLocation] = useState([]);
   const [supplierItems, setSupplierItems] = useState([]);
   const [supplierImage, setSupplierImage] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const userToken = localStorage.userToken;
     const decoded = jwt_decode(userToken);
-    setSupplierId(decoded._id);
-    setSupplierName(decoded.name);
+    
 
     let name = supplierName;
-
+//retrive specific supplier details
     axios
-      .get(`http://localhost:5000/supplier/details/${name}`)
+      .get(`http://localhost:5000/supplier/details/${id}`)
       .then((response) => {
+        setSupplierName(response.data.exsitingSupplierDetails[0].name);
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setSupplierImage(response.data.exsitingSupplierDetails[0].image);
         setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
@@ -70,7 +73,6 @@ export default function ViewProfile() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter Supplier Name"
                     name="supplierName"
                     value={supplierName}
                     disabled
@@ -86,7 +88,6 @@ export default function ViewProfile() {
                     type="tel"
                     className="form-control"
                     name="phoneNumber"
-                    placeholder="Enter Phone Number"
                     pattern="[0-9]{10}"
                     value={supplierPno}
                     disabled
@@ -103,7 +104,6 @@ export default function ViewProfile() {
                     className="form-control"
                     name="email"
                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-                    placeholder="Enter Email Address"
                     value={supplierEmail}
                     disabled
                   />
@@ -118,7 +118,6 @@ export default function ViewProfile() {
                     type="text"
                     className="form-control"
                     name="location"
-                    placeholder="Enter Location"
                     value={supplierLocation}
                     disabled
                   />
@@ -132,7 +131,6 @@ export default function ViewProfile() {
                   <textarea
                     className="form-control "
                     name="supplierItems"
-                    placeholder="Enter Supplier Items"
                     maxLength={"150"}
                     value={supplierItems}
                     disabled

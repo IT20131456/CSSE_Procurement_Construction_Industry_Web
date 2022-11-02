@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
-
+//this function is use to view all registered suppliers details
 export default function RequestedSippliers() {
   const [supplier, setSupplier] = useState([]);
   const [MyImage, setImage] = useState("user.png");
 
   useEffect(() => {
+    //retrive all supplier detals
     axios.get("http://localhost:5000/supplier/details/getAll").then((res) => {
       if (res.data.success) {
         setSupplier(res.data.exsitingSupplierDetails);
@@ -51,7 +52,7 @@ export default function RequestedSippliers() {
                           </div>
                           <div className="col-sm-4 mb-2">
                             <a
-                              href="/profile/view"
+                              href={`/profile/view/${data.name}`}
                               class="btn btn-danger rounded-pill"
                             >
                               Preview
@@ -102,7 +103,7 @@ export default function RequestedSippliers() {
                           </div>
                           <div className="col-sm-4 mb-2">
                             <a
-                              href="/profile/view"
+                              href={`/profile/view/${data.name}`}
                               class="btn btn-danger rounded-pill"
                             >
                               Preview
