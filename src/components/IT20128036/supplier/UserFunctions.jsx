@@ -16,7 +16,6 @@ export const userRegister = (newUser) => {
     })
     .then((res) => {
       if (res.data.success) {
-        // window.alert('Registered successfully!');
       }
     })
     .catch((err) => {

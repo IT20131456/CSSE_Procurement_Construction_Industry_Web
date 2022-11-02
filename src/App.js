@@ -50,7 +50,7 @@ function App() {
 
         <Route path="/approved/supplier" element={<ApprovedSuppriers/>}></Route>
 
-        <Route path="/profile/view" element={<ViewProfile/>}></Route>
+        <Route path="/profile/view/:id" element={<ViewProfile/>}></Route>
 
 
         

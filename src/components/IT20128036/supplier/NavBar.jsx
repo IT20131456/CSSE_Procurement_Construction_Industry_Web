@@ -86,7 +86,7 @@ class NavBar extends Component {
 
     let userLink;
 
-    // NavBar Links for job seeker
+    // NavBar Links for supplier
     if (this.state.type === "supplier") {
       userLink = (
         <ul className="nav nav-tabs">
@@ -169,7 +169,7 @@ class NavBar extends Component {
       );
     }
 
-    // staff
+    //nav bar for staff
     else if (this.state.type === "staff") {
       userLink = (
         <ul className="nav nav-tabs">
