@@ -18,12 +18,7 @@ export default function ViewProfile() {
   const { id } = useParams();
 
   useEffect(() => {
-    const userToken = localStorage.userToken;
-    const decoded = jwt_decode(userToken);
-    
-
-    let name = supplierName;
-//retrive specific supplier details
+    //retrive specific supplier details
     axios
       .get(`http://localhost:5000/supplier/details/${id}`)
       .then((response) => {
@@ -37,7 +32,7 @@ export default function ViewProfile() {
         setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
         setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
       });
-  }, [supplierName]);
+  }, []);
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
