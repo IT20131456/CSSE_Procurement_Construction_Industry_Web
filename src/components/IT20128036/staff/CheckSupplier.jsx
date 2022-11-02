@@ -6,6 +6,7 @@ import NavBar from "../supplier/NavBar";
 import swal from "sweetalert";
 
 export default function CheckSupplier() {
+  //get paraam id
   const { id } = useParams();
 
   const [supplierDetails, setSupplierDetails] = useState("");
@@ -26,6 +27,7 @@ export default function CheckSupplier() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    //retrive specific supplier details
     axios.get(`http://localhost:5000/supplier/${id}`).then((response) => {
       setSupplierName(response.data.exsitingSupplierDetails.name);
 
@@ -35,6 +37,7 @@ export default function CheckSupplier() {
   }, [supplierName]);
 
   useEffect(() => {
+    //retrive all items details
     axios.get(`http://localhost:5000/items/getAll`).then((response) => {
       setItems(response.data.exsitingItems);
     });
@@ -47,6 +50,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific suppllier details
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -66,6 +70,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier details
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -85,6 +90,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -104,6 +110,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -123,6 +130,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -142,6 +150,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -161,6 +170,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -180,6 +190,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -199,6 +210,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -218,6 +230,7 @@ export default function CheckSupplier() {
     };
 
     console.log(data);
+    //update specific supplier data
     axios
       .put(`http://localhost:5000/update/supplier/details/${id}`, data)
       .then((res) => {
@@ -268,35 +281,7 @@ export default function CheckSupplier() {
                   />
                 </div>
               </div>
-              {/* <div class="form-group row mt-4 mx-5">
-                <label for="phonenumber" class="col-lg-4 col-form-label">
-                  <h5>Phone Number : </h5>
-                </label>
-                <div class="col-lg-8">
-                  <input
-                    type="tel"
-                    class="form-control"
-                    name="phoneNumber"
-                    placeholder="Enter Phone Number"
-                  value={supplierMobile}
-                  disabled
-                  />
-                </div>
-              </div> */}
-              {/* <div class="form-group row mt-4 mx-5">
-                <label for="email" class="col-lg-4 col-form-label">
-                  <h5>Email Address : </h5>
-                </label>
-                <div class="col-lg-8">
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    value={supplierEmail}
-                    disabled
-                  />
-                </div>
-              </div> */}
+
               <div class="form-group row mt-4 mx-5">
                 <label for="location" class="col-lg-4 col-form-label">
                   <h5>Location : </h5>

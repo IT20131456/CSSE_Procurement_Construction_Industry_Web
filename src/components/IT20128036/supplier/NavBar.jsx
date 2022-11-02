@@ -86,7 +86,7 @@ class NavBar extends Component {
 
     let userLink;
 
-    // NavBar Links for job seeker
+    // NavBar Links for supplier
     if (this.state.type === "supplier") {
       userLink = (
         <ul className="nav nav-tabs">
@@ -107,9 +107,43 @@ class NavBar extends Component {
               href="#"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Companies
+              Projects
             </a>
           </li>
+
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              aria-current="page"
+              href="#"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Add Items
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              aria-current="page"
+              href="#"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              View Items
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              aria-current="page"
+              href=""
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Contact Me
+            </a>
+          </li>
+
           <li className="nav-item">
             <a
               className="nav-link"
@@ -118,60 +152,6 @@ class NavBar extends Component {
               style={{ textDecoration: "none", color: "black" }}
             >
               Supplier Profile
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              aria-current="page"
-              href="/interview/jobseeker"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              Assessments and Interviews
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              aria-current="page"
-              href="/all_applications"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              My Applications
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              aria-current="page"
-              href="/resume"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              My Resume
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              aria-current="page"
-              href="/user/inq"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              Contact Us
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              aria-current="page"
-              href="/userprofile/view"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              Profile
             </a>
           </li>
 
@@ -189,8 +169,8 @@ class NavBar extends Component {
       );
     }
 
-    // NavBar Links for Job Recruters
-    else if (this.state.type === "Job Recruiter") {
+    //nav bar for staff
+    else if (this.state.type === "staff") {
       userLink = (
         <ul className="nav nav-tabs">
           <li className="nav-item">
@@ -207,10 +187,10 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/all_applications"
+              href="#"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Applications{" "}
+              Projects{" "}
             </a>
           </li>
 
@@ -218,10 +198,19 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/interview/recruiter"
+              href="#"
+              style={{ textDecoration: "none", color: "black" }}
+            ></a>
+          </li>
+
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              aria-current="page"
+              href="/supplier/req"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Assessments and Interviews
+              Suppliers
             </a>
           </li>
 
@@ -229,10 +218,10 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/view/vacancy"
+              href="#"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Vacancies
+              Invoices
             </a>
           </li>
 
@@ -240,10 +229,10 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/user/inq"
+              href="/approved/supplier"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Contact Us
+              Approved Suppliers
             </a>
           </li>
 
@@ -251,16 +240,16 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="/userprofile/view"
+              href="#"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Profile
+              Purchase Order
             </a>
           </li>
 
           <li className="nav-item">
             <a
-              href="/user/login"
+              href=""
               onClick={this.logOut.bind(this)}
               className="nav-link bg-dark"
               style={{ textDecoration: "none", color: "white" }}
@@ -280,7 +269,12 @@ class NavBar extends Component {
         >
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              <p><strong>Skyline</strong><strong style={{ textDecoration: "none", color: "#FFB200" }}>&nbsp;&nbsp;Constractors</strong> </p>
+              <p>
+                <strong>Skyline</strong>
+                <strong style={{ textDecoration: "none", color: "#FFB200" }}>
+                  &nbsp;&nbsp;Constractors
+                </strong>{" "}
+              </p>
             </a>
 
             <button
