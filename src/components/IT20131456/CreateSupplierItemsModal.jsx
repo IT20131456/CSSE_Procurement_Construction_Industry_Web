@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import jwt_decode from "jwt-decode";
 
-
-export default function CreateSupplierItemsModal(props) {
+export default function CreateSupplierItemsModal() {
   const [supplierDetails, setSupplierDetails] = useState([]);
   const [supplierId, setSupplierId] = useState([]);
   const [supplierName, setSupplierName] = useState([]);
@@ -19,7 +19,7 @@ export default function CreateSupplierItemsModal(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+//input fileds validations
     if (itemName === "") {
       setValidateAlert(true);
       setFromValidate("Please Enter Item Name");
@@ -40,7 +40,7 @@ export default function CreateSupplierItemsModal(props) {
       stocks: stocks,
       price: price,
     };
-
+//post data to the backend using axios
     console.log(data);
     axios.post(`http://localhost:5000/add/item`, data).then((res) => {
       if (res.data.success) {
@@ -66,7 +66,7 @@ export default function CreateSupplierItemsModal(props) {
     setSupplierName(decoded.name);
 
     let name = supplierName;
-
+//Get data to the backend using axios
     axios
       .get(`http://localhost:5000/supplier/details/${name}`)
       .then((response) => {
@@ -102,6 +102,7 @@ export default function CreateSupplierItemsModal(props) {
                 ></button>
               </div>
               <br />
+             {/* Validation Alert messages */}
               <div className="mx-2">
                 {validateAlert ? (
                   <p>
@@ -123,6 +124,7 @@ export default function CreateSupplierItemsModal(props) {
                 )}
               </div>
               <div className="modal-body">
+                {/* Declare a form */}
                 <form onSubmit={onSubmit}>
                   <div className="col-md-12">
                     <div className="form-group">
@@ -157,7 +159,7 @@ export default function CreateSupplierItemsModal(props) {
                   <div className="col-md-12">
                     <div className="form-group">
                       <strong>
-                        Item Price
+                        Item Price (per one)
                         <span className="_label" />
                       </strong>
                       <input

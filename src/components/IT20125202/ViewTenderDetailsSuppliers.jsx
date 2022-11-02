@@ -19,7 +19,7 @@ export default function ViewTenderDetailsSuppliers() {
 
   React.useEffect(() => {
     axios.get(`http://localhost:5000/tender/get/${id}`).then((res) => {
-      const receivedTender = res.data.exsitingTender;
+      const receivedTender = res.data.existingTender;
       setTender({
         siteManagerID: receivedTender.siteManagerID,
         siteManagerName: receivedTender.siteManagerName,

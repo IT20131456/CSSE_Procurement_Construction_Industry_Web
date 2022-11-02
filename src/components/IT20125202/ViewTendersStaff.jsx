@@ -11,8 +11,8 @@ export default function ViewTendersStaff() {
 
     React.useEffect(() => {
         axios.get('http://localhost:5000/tender/getall').then((res) => {
-            setTenders(res.data.exsitingTenders);
-            setAllTenders(res.data.exsitingTenders);
+            setTenders(res.data.existingTenders);
+            setAllTenders(res.data.existingTenders);
             //console.log(res.data);
         }).catch((err) => {
             alert(err.message);

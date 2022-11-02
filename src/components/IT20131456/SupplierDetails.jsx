@@ -21,16 +21,14 @@ export default function SupplierDetails() {
     setSupplierName(decoded.name);
 
     let name = supplierName;
-
+//Get data to the backend using axios
     axios
       .get(`http://localhost:5000/supplier/details/${name}`)
       .then((response) => {
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setSupplierImage(response.data.exsitingSupplierDetails[0].image);
         setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
-        setSupplierItems(
-          response.data.exsitingSupplierDetails[0].supplierItems
-        );
+        setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
         setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
         setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
       });
