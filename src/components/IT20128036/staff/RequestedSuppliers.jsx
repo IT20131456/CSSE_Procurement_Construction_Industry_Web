@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
+
 //this function is use to view all registered suppliers details
 export default function RequestedSippliers() {
   const [supplier, setSupplier] = useState([]);
