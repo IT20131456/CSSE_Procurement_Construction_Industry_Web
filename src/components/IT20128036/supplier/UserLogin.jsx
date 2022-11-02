@@ -66,7 +66,7 @@ export default class UserLogin extends Component {
             if (value) {
               localStorage.setItem("userToken", res.data);
 
-              window.location = "/supplier/details";
+              window.location = "/";
             }
           });
         })

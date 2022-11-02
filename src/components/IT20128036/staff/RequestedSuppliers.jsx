@@ -24,7 +24,7 @@ export default function RequestedSippliers() {
     <div>
       <NavBar />
       <div className="container">
-        <h2 className="text-center"> Registered Suppliers</h2>
+        <h2 className="text-center mt-4 mb-4"> Registered Suppliers</h2>
 
         <div className="container border  border-secondary rounded-3 shadow-lg">
           <div className="row">
