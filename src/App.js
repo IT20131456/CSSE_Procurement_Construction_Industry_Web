@@ -16,12 +16,18 @@ import ViewTenderDetailsStaff from "./components/IT20125202/ViewTenderDetailsSta
 import ViewTenderDetailsSuppliers from "./components/IT20125202/ViewTenderDetailsSuppliers";
 import SupplierItems from "./components/IT20131456/UpdateItems";
 
+import ApprovedSuppriers from "./components/IT20128036/staff/ApprovedSuppliers";
+import ViewProfile from "./components/IT20128036/staff/ViewProfile";
+
+import Landing from "./components/Landing";
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>   
-
+      <Route path="/" element={<Landing/>} />
         <Route path="/supplier/details" element={<SupplierDetails/>} />
         <Route path="/update/supplier/details/:id" element={<UpdateSupplierDetails/>} />
         <Route path="/supplier/items/details" element={<SupplierItemsDetails/>} />
@@ -38,11 +44,22 @@ function App() {
 
 
 
-        
+ 
         <Route path="/staff/tenders" element={<ViewTendersStaff/>} />
         <Route path="/suppliers/tenders" element={<ViewTendersSuppliers/>} />
         <Route path="/staff/tender/:id" element={<ViewTenderDetailsStaff/>} />
         <Route path="/suppliers/tender/:id" element={<ViewTenderDetailsSuppliers/>} />
+
+        <Route path="/approved/supplier" element={<ApprovedSuppriers/>}></Route>
+
+        <Route path="/profile/view/:id" element={<ViewProfile/>}></Route>
+
+
+        
+    
+
+
+        
 
 
       </Routes>
