@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
+
 //this function is use to view all registered suppliers details
 export default function RequestedSippliers() {
   const [supplier, setSupplier] = useState([]);
@@ -23,7 +24,7 @@ export default function RequestedSippliers() {
     <div>
       <NavBar />
       <div className="container">
-        <h2 className="text-center"> Registered Suppliers</h2>
+        <h2 className="text-center mt-4 mb-4"> Registered Suppliers</h2>
 
         <div className="container border  border-secondary rounded-3 shadow-lg">
           <div className="row">
