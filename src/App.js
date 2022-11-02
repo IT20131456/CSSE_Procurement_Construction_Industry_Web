@@ -17,6 +17,8 @@ import ViewTenderDetailsSuppliers from "./components/IT20125202/ViewTenderDetail
 import SupplierItems from "./components/IT20131456/UpdateItems";
 
 import ApprovedSuppriers from "./components/IT20128036/staff/ApprovedSuppliers";
+import ViewProfile from "./components/IT20128036/staff/ViewProfile";
+
 
 
 function App() {
@@ -47,6 +49,15 @@ function App() {
         <Route path="/suppliers/tender/:id" element={<ViewTenderDetailsSuppliers/>} />
 
         <Route path="/approved/supplier" element={<ApprovedSuppriers/>}></Route>
+
+        <Route path="/profile/view" element={<ViewProfile/>}></Route>
+
+
+        
+    
+
+
+        
 
 
       </Routes>
