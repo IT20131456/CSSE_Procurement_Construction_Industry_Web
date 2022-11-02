@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
 
+//this function use to approved suppliers
 export default function ApprovedSuppriers() {
   const [supplier, setSupplier] = useState([]);
   const [MyImage, setImage] = useState("user.png");
 
   useEffect(() => {
+    //retrivesupplier details
     axios.get("http://localhost:5000/supplier/details/getAll").then((res) => {
       if (res.data.success) {
-        //'approved'
         setSupplier(res.data.exsitingSupplierDetails);
       }
     });
@@ -27,7 +28,9 @@ export default function ApprovedSuppriers() {
 
         <div className="container border  border-secondary rounded-3 shadow-lg">
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-5 mx-2 me-2">
+              {/* display suppliers using map  */}
+              {/* page devide in 2 side and show supplier details */}
               {supplier.slice(0, secondColumnStart).map((data, index) => {
                 if (data.supstatus == "Approved")
                   return (
@@ -58,14 +61,14 @@ export default function ApprovedSuppriers() {
                               </span>
 
                               <a
-                                href={`/supplier/check/${data._id}`}
+                                href={`/profile/view/${data.name}`}
                                 class="btn btn-danger rounded-pill"
                               >
                                 Preview
                               </a>
 
                               <a
-                                href="#"
+                                href={`/supplier/check/${data._id}`}
                                 class="btn btn-primary mt-2 rounded-pill"
                               >
                                 &nbsp;&nbsp;Action
@@ -78,7 +81,9 @@ export default function ApprovedSuppriers() {
                   );
               })}
             </div>
-            <div className="col-sm-6">
+            {/* display suppliers using map  */}
+            {/* page devide in 2 side and show supplier details */}
+            <div className="col-sm-5 mx-2 me-2">
               {supplier.slice(secondColumnStart).map((data, index) => {
                 return (
                   <div class="card mt-4 mb-4">
@@ -108,14 +113,14 @@ export default function ApprovedSuppriers() {
                             </span>
 
                             <a
-                              href={`/supplier/check/${data._id}`}
+                              href={`/profile/view/${data.name}`}
                               class="btn btn-danger rounded-pill"
                             >
                               Preview
                             </a>
 
                             <a
-                              href="#"
+                              href={`/supplier/check/${data._id}`}
                               class="btn btn-primary mt-2 rounded-pill"
                             >
                               &nbsp;&nbsp;Action
