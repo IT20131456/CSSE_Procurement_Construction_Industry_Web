@@ -110,7 +110,16 @@ class NavBar extends Component {
               Projects
             </a>
           </li>
-
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              aria-current="page"
+              href="/suppliers/tenders"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Tenders
+            </a>
+          </li>
           <li className="nav-item">
             <a
               className="nav-link"
@@ -240,7 +249,7 @@ class NavBar extends Component {
             <a
               className="nav-link"
               aria-current="page"
-              href="#"
+              href="/staff/tenders"
               style={{ textDecoration: "none", color: "black" }}
             >
               Purchase Order
