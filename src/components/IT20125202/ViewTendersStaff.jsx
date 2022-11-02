@@ -11,6 +11,7 @@ export default function ViewTendersStaff() {
     const [search, setSearch] = React.useState('');
 
     React.useEffect(() => {
+        document.title = "View Tenders";
         axios.get('http://localhost:5000/tender/getall').then((res) => {
             setTenders(res.data.existingTenders);
             setAllTenders(res.data.existingTenders);

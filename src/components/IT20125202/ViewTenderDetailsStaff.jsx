@@ -20,6 +20,7 @@ export default function ViewTenderDetailsStaff() {
   })
 
   React.useEffect(() => {
+    document.title = "Tender Details"
     axios.get(`http://localhost:5000/tender/get/${id}`).then((res) => {
       const receivedTender = res.data.existingTender;
       setTender({
