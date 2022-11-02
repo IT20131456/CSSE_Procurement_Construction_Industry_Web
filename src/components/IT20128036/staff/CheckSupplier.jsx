@@ -8,33 +8,37 @@ import swal from "sweetalert";
 export default function CheckSupplier() {
   const { id } = useParams();
 
-   const [supplierDetails, setSupplierDetails] = useState("");
-  const [supplierName, setSupplierName] = useState(""); 
-  const [supplierMobile, setSupplierMobile] = useState(""); 
-  const [supplierEmail, setSupplierEmail] = useState(""); 
-  const [supplierLocation, setSupplierLocation] = useState(""); 
-  const [supApproved] = useState("approved");
-  const [supDecline] = useState("decline");
-  
+  const [supplierDetails, setSupplierDetails] = useState("");
+  const [supplierName, setSupplierName] = useState("");
+
+  const [supplierLocation, setSupplierLocation] = useState("");
+  const [supApproved] = useState("Approved");
+  const [supDecline] = useState("Decline");
+  const [Item1] = useState("Cement 50Kg");
+  const [Item2] = useState("H-beam 44mm");
+  const [Item3] = useState("sands cube");
+  const [Item4] = useState("stone cube");
+  const [Item1d] = useState("No Item");
+  const [Item2d] = useState("No Item");
+  const [Item3d] = useState("No Item");
+  const [Item4d] = useState("No Item");
+
+  const [items, setItems] = useState([]);
+
   useEffect(() => {
-   
+    axios.get(`http://localhost:5000/supplier/${id}`).then((response) => {
+      setSupplierName(response.data.exsitingSupplierDetails.name);
 
-    axios
-      .get(`http://localhost:5000/supplier/${id}`)
-      .then((response) => {
-        
-        setSupplierName(response.data.exsitingSupplierDetails.name);
-        setSupplierEmail(response.data.exsitingSupplierDetails.email);
-        setSupplierMobile(response.data.exsitingSupplierDetails.mobile);
-        setSupplierLocation(response.data.exsitingSupplierDetails.location);
-        console.log(response.data.exsitingSupplierDetails.name);    
-      });
-    
-  },[supplierName] );
+      setSupplierLocation(response.data.exsitingSupplierDetails.location);
+      console.log(response.data.exsitingSupplierDetails.name);
+    });
+  }, [supplierName]);
 
-
-
-
+  useEffect(() => {
+    axios.get(`http://localhost:5000/items/getAll`).then((response) => {
+      setItems(response.data.exsitingItems);
+    });
+  }, []);
 
   const approve = (e) => {
     e.preventDefault();
@@ -55,8 +59,6 @@ export default function CheckSupplier() {
       });
   };
 
-
-  
   const decline = (e) => {
     e.preventDefault();
     const data = {
@@ -76,52 +78,182 @@ export default function CheckSupplier() {
       });
   };
 
+  const item1 = (e) => {
+    e.preventDefault();
+    const data = {
+      item1: Item1,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal(" Approved Successfully", "", "success");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item2 = (e) => {
+    e.preventDefault();
+    const data = {
+      item2: Item2,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Approved Successfully", "", "success");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item3 = (e) => {
+    e.preventDefault();
+    const data = {
+      item3: Item3,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Approved Successfully", "", "success");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item4 = (e) => {
+    e.preventDefault();
+    const data = {
+      item4: Item4,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Approved Successfully", "", "success");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item1d = (e) => {
+    e.preventDefault();
+    const data = {
+      item1: Item1d,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal(" Decline Item", "", "warning");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item2d = (e) => {
+    e.preventDefault();
+    const data = {
+      item2: Item2d,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Decline Item", "", "warning");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item3d = (e) => {
+    e.preventDefault();
+    const data = {
+      item3: Item3d,
+    };
 
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Decline Item", "", "warning");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
+  const item4d = (e) => {
+    e.preventDefault();
+    const data = {
+      item4: Item4d,
+    };
 
-
-
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+      .then((res) => {
+        if (res.data.success) {
+          swal("Decline Item", "", "warning");
+          setTimeout(() => {
+            window.location = `/supplier/check/${id}`;
+          }, "3000");
+        }
+      });
+  };
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/img1.png";
   return (
     <div>
-       <NavBar />
-      
+      <NavBar />
+
       <div className="container text-center my-2">
-        <h1>Supplier Details {supplierName}</h1>
+        <h1>Supplier Details</h1>
         <hr />
       </div>
-   
 
       <div className="container bg-white p-3 mb-5 shadow  rounded mt-3 col-lg-10 ">
         <form>
           <div className="row mt-3">
             <div className="col-md-4">
               <img
-                style={{ height: "100%", width: "100%" }}
+                style={{ height: "200px", width: "200px" }}
                 name="photo"
                 src={imageBasePath}
                 alt="Not loadded"
               />
             </div>
             <div className="col-md-8">
-              <h3>
-                Personal Details &nbsp;
-               
-              </h3>
+              <h3>Personal Details &nbsp;</h3>
               <div class="form-group row mt-4 mx-5">
                 <label for="suppliername" class="col-lg-4 col-form-label">
                   <h5>Supplier Name : </h5>
@@ -129,14 +261,14 @@ export default function CheckSupplier() {
                 <div class="col-lg-8">
                   <input
                     type="text"
-                    class="form-control"                  
+                    class="form-control"
                     name="supplierName"
                     value={supplierName}
                     disabled
                   />
                 </div>
               </div>
-              <div class="form-group row mt-4 mx-5">
+              {/* <div class="form-group row mt-4 mx-5">
                 <label for="phonenumber" class="col-lg-4 col-form-label">
                   <h5>Phone Number : </h5>
                 </label>
@@ -150,8 +282,8 @@ export default function CheckSupplier() {
                   disabled
                   />
                 </div>
-              </div>
-              <div class="form-group row mt-4 mx-5">
+              </div> */}
+              {/* <div class="form-group row mt-4 mx-5">
                 <label for="email" class="col-lg-4 col-form-label">
                   <h5>Email Address : </h5>
                 </label>
@@ -164,7 +296,7 @@ export default function CheckSupplier() {
                     disabled
                   />
                 </div>
-              </div>
+              </div> */}
               <div class="form-group row mt-4 mx-5">
                 <label for="location" class="col-lg-4 col-form-label">
                   <h5>Location : </h5>
@@ -179,22 +311,147 @@ export default function CheckSupplier() {
                   />
                 </div>
               </div>
-             
             </div>
           </div>
           &nbsp;
         </form>
       </div>
 
-<div className="row">
-  <div className="col-sm-6"></div>
-  <div className="col-sm-6">
-<a href="" onClick={decline} className="btn btn-danger  mb-4 mx-4 me-4">Restrict Supplier</a>
-<a href="" onClick={approve} className="btn btn-primary  mb-4 mx-4 me-4">Approve Supplier</a>
-</div>
-</div>
+      <div className="container">
+        <div className="row border d-flex p-2 bd-highlight">
+          <div className="col-sm-3">
+            <i class="fa fa-telegram" aria-hidden="true">
+              &nbsp;&nbsp;Cement
+            </i>
+          </div>
 
-      
+          <div className="col-sm-4">50Kg</div>
+
+          <div className="col-sm-5">
+            <a
+              href=""
+              onClick={item1}
+              className="btn btn-success  mb-4 mx-4 me-4"
+            >
+              Approve
+            </a>
+            <a
+              href=""
+              onClick={item1d}
+              className="btn btn-danger  mb-4 mx-4 me-4"
+            >
+              Decline
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row border d-flex p-2 bd-highlight">
+          <div className="col-sm-3">
+            <i class="fa fa-telegram" aria-hidden="true">
+              &nbsp;&nbsp;H-beam 44mm
+            </i>
+          </div>
+
+          <div className="col-sm-4">60</div>
+
+          <div className="col-sm-5">
+            <a
+              href=""
+              onClick={item2}
+              className="btn btn-success  mb-4 mx-4 me-4"
+            >
+              Approve
+            </a>
+            <a
+              href=""
+              onClick={item2d}
+              className="btn btn-danger  mb-4 mx-4 me-4"
+            >
+              Decline
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row border d-flex p-2 bd-highlight">
+          <div className="col-sm-3">
+            <i class="fa fa-telegram" aria-hidden="true">
+              &nbsp;&nbsp;sands cube
+            </i>
+          </div>
+
+          <div className="col-sm-4">30</div>
+
+          <div className="col-sm-5">
+            <a
+              href=""
+              onClick={item3}
+              className="btn btn-success  mb-4 mx-4 me-4"
+            >
+              Approve
+            </a>
+            <a
+              href=""
+              onClick={item3d}
+              className="btn btn-danger  mb-4 mx-4 me-4"
+            >
+              Decline
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row border d-flex p-2 bd-highlight">
+          <div className="col-sm-3">
+            <i class="fa fa-telegram" aria-hidden="true">
+              &nbsp;&nbsp;stone cube
+            </i>
+          </div>
+
+          <div className="col-sm-4">15</div>
+
+          <div className="col-sm-5">
+            <a
+              href=""
+              onClick={item4}
+              className="btn btn-success  mb-4 mx-4 me-4"
+            >
+              Approve
+            </a>
+            <a
+              href=""
+              onClick={item4d}
+              className="btn btn-danger  mb-4 mx-4 me-4"
+            >
+              Decline
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="row mt-4">
+        <div className="col-sm-6"></div>
+        <div className="col-sm-6">
+          <a
+            href=""
+            onClick={decline}
+            className="btn btn-danger   mb-4 mx-4 me-4"
+          >
+            Restrict Supplier
+          </a>
+          <a
+            href=""
+            onClick={approve}
+            className="btn btn-primary  mb-4 mx-4 me-4"
+          >
+            Approve Supplier
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

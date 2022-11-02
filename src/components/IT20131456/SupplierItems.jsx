@@ -14,6 +14,7 @@ export default function SupplierItems() {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
+  //access backend data using axios
   useEffect(() => {
     const userToken = localStorage.userToken;
     const decoded = jwt_decode(userToken);
@@ -96,7 +97,7 @@ export default function SupplierItems() {
               <th scope="col">#</th>
               <th scope="col">Item Name</th>
               <th scope="col">Available Stock Count</th>
-              <th scope="col">Item Price</th>
+              <th scope="col">Item Price (RS)</th>
               <th scope="col" style={{ width: "20%" }}>
                 Action
               </th>
