@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
 
-//this function use to approved suppliers
+//this function use to show approved suppliers
 export default function ApprovedSuppriers() {
   const [supplier, setSupplier] = useState([]);
   const [MyImage, setImage] = useState("user.png");
