@@ -9,6 +9,7 @@ export default function ViewTendersStaff() {
     const [tenders, setTenders] = React.useState([]);
     const [allTenders, setAllTenders] = React.useState([]);
     const [search, setSearch] = React.useState('');
+    const defaultValue = 'Pending';
 
     React.useEffect(() => {
         document.title = "View Tenders";
@@ -78,9 +79,9 @@ export default function ViewTendersStaff() {
                                     <th scope='col'>Site</th>
                                     <th scope="col">Site Manager ID</th>
                                     <th scope="col">Site Manager Name</th>
-                                    <th scope="col">ExpectedBudget</th>
+                                    <th scope="col">Expected Budget (Rs.)</th>
                                     <th scope="col">Accepted Supplier</th>
-                                    <th scope="col">Actual Amount</th>
+                                    <th scope="col">Actual Amount (Rs.)</th>
                                     <th scope="col">Requested Date</th>
                                     <th scope="col">Status</th>
                                     <th scope="col"></th>
@@ -96,7 +97,10 @@ export default function ViewTendersStaff() {
                                         <td>{tender.siteManagerID}</td>
                                         <td>{tender.siteManagerName}</td>
                                         <td>{tender.expectedBudget}</td>
-                                        <td>{tender.acceptedSupplier}</td>
+                                        <td>
+                                            {tender.acceptedSupplier==="" && <span>{defaultValue}</span> }
+                                            {tender.acceptedSupplier!=="" && <span>{tender.acceptedSupplier}</span> }
+                                        </td>
                                         <td>{tender.actualAmount}</td>
                                         <td>{new Date(tender.createdDate).toString()}</td>
                                         <td>
@@ -123,7 +127,10 @@ export default function ViewTendersStaff() {
                                         <td>{tender.siteManagerID}</td>
                                         <td>{tender.siteManagerName}</td>
                                         <td>{tender.expectedBudget}</td>
-                                        <td>{tender.acceptedSupplier}</td>
+                                        <td>
+                                            {tender.acceptedSupplier==="" && <span>{defaultValue}</span> }
+                                            {tender.acceptedSupplier!=="" && <span>{tender.acceptedSupplier}</span> }
+                                        </td>
                                         <td>{tender.actualAmount}</td>
                                         <td>{new Date(tender.createdDate).toString()}</td>
                                         <td>

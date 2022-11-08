@@ -73,7 +73,7 @@ export default function ViewTendersSuppliers() {
                                     <th scope="col">Site</th>
                                     <th scope="col">Requested Date</th>
                                     <th scope="col">Items</th>
-                                    <th scope="col">Expected Budget</th>
+                                    <th scope="col">Expected Budget (Rs.)</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>

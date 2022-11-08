@@ -252,7 +252,7 @@ class NavBar extends Component {
               href="/staff/tenders"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Purchase Order
+              Purchase Orders
             </a>
           </li>
 
