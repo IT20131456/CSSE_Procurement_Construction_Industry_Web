@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import NavBar from '../IT20128036/supplier/NavBar'
+import swal from 'sweetalert'
 
 export default function ViewTenderDetailsStaff() {
 
@@ -39,9 +40,29 @@ export default function ViewTenderDetailsStaff() {
     })
   }, [id]);
 
-  const onReject = () => { }
+  const onReject = () => {
+    axios.patch(`http://localhost:5000/tender/update/${id}`, { status: "Rejected" }).then((res) => {
+      swal("Tender Rejected!", "Tender has been rejected successfully!", "success").then((value) => {
+        if (value) {
+          navigate('/staff/tenders');
+        }
+      });
+    }).catch((err) => {
+      alert(err.message);
+    })
+  }
 
-  const onApprove = () => { }
+  const onApprove = () => {
+    axios.patch(`http://localhost:5000/tender/update/${id}`, { status: "Waiting for a supplier" }).then((res) => {
+      swal("Tender Approved!", "Tender has been approved successfully!", "success").then((value) => {
+        if (value) {
+          navigate('/staff/tenders');
+        }
+      });
+    }).catch((err) => {
+      alert(err.message);
+    })
+  }
 
   return (
     <div>
@@ -91,22 +112,22 @@ export default function ViewTenderDetailsStaff() {
                   <div className='col-md-6'> <b>Item</b> </div>
                   <div className='col-md-6'> {tender.items.name} </div>
                 </div>
-                <hr/>
+                <hr />
                 <div className='row'>
                   <div className='col-md-6'> <b>Size</b> </div>
                   <div className='col-md-6'> {tender.items.size} </div>
                 </div>
-                <hr/>
+                <hr />
                 <div className='row'>
                   <div className='col-md-6'> <b>Quantity</b> </div>
                   <div className='col-md-6'> {tender.items.quantity} </div>
                 </div>
-                <hr/>
+                <hr />
                 <div className='row'>
                   <div className='col-md-6'> <b>Order Status</b> </div>
                   <div className='col-md-6'> {tender.items.orderStatus} </div>
                 </div>
-                <hr/>
+                <hr />
                 <div className='row'>
                   <div className='col-md-6'> <b>Received Amount</b> </div>
                   <div className='col-md-6'> {tender.items.receivedAmount} </div>
@@ -126,7 +147,7 @@ export default function ViewTenderDetailsStaff() {
           <hr />
           <div className="row">
             <div className="col-md-6">
-              <h6> Expected Budget</h6>
+              <h6> Expected Budget (Rs.)</h6>
             </div>
             <div className="col-md-6">
               <p>{tender.expectedBudget}</p>
@@ -144,7 +165,7 @@ export default function ViewTenderDetailsStaff() {
           <hr />
           <div className="row">
             <div className="col-md-6">
-              <h6> Actual Amount</h6>
+              <h6> Actual Amount (Rs.)</h6>
             </div>
             <div className="col-md-6">
               <p>{tender.actualAmount}</p>
@@ -163,9 +184,10 @@ export default function ViewTenderDetailsStaff() {
           <br />
 
           {tender.status === 'Need approval' && (
-            <div>
-              <button className="btn btn-primary" onClick={() => onApprove()}>Approve</button>
-              <button className="btn btn-primary" onClick={() => onReject()}>Reject</button>
+            <div style={{ textAlign: 'right' }}>
+              <button className="btn btn-success" onClick={() => onApprove()}>Approve</button>
+              &nbsp;
+              <button className="btn btn-danger" onClick={() => onReject()}>Reject</button>
             </div>
           )}
 

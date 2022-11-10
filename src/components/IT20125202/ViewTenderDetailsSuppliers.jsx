@@ -87,19 +87,10 @@ export default function ViewTenderDetailsSuppliers() {
           <hr />
           <div className="row">
             <div className="col-md-6">
-              <h6> Expected Budget</h6>
+              <h6> Expected Budget (Rs.)</h6>
             </div>
             <div className="col-md-6">
               <p>{tender.expectedBudget}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-md-6">
-              <h6> Actual Amount</h6>
-            </div>
-            <div className="col-md-6">
-              <p>{tender.actualAmount}</p>
             </div>
           </div>
           <hr />
