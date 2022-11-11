@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import swal from "sweetalert";
-import NavBar from "../IT20128036/supplier/NavBar";
-import {SUPPLIER_DETAILS_PATH} from '../constants/RestApi.const'
+import NavBar from "../supplier/NavBar";
+import { useParams } from "react-router-dom";
+import { supplierProfile } from "./AxiosCall";
 
-export default function SupplierDetails() {
+//this function is use to show specific supplier profile
+export default function ViewProfile() {
   const [supplierDetails, setSupplierDetails] = useState([]);
   const [supplierId, setSupplierId] = useState([]);
   const [supplierName, setSupplierName] = useState([]);
@@ -15,26 +13,21 @@ export default function SupplierDetails() {
   const [supplierLocation, setSupplierLocation] = useState([]);
   const [supplierItems, setSupplierItems] = useState([]);
   const [supplierImage, setSupplierImage] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    const userToken = localStorage.userToken;
-    const decoded = jwt_decode(userToken);
-    setSupplierId(decoded._id);
-    setSupplierName(decoded.name);
+    //retrive specific supplier details
 
-    let name = supplierName;
-//Get data to the backend using axios
-    axios
-    .get(SUPPLIER_DETAILS_PATH + `${name}`)
-      .then((response) => {
-        setSupplierDetails(response.data.exsitingSupplierDetails);
-        setSupplierImage(response.data.exsitingSupplierDetails[0].image);
-        setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
-        setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
-        setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
-        setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
-      });
-  }, [supplierName]);
+    supplierProfile(id).then((response) => {
+      setSupplierName(response.data.exsitingSupplierDetails[0].name);
+      setSupplierDetails(response.data.exsitingSupplierDetails);
+      setSupplierImage(response.data.exsitingSupplierDetails[0].image);
+      setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
+      setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
+      setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
+      setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
+    });
+  }, []);
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
@@ -46,13 +39,7 @@ export default function SupplierDetails() {
         <h1>Supplier Details</h1>
         <hr />
       </div>
-      <div className="container" style={{ textAlign: "right" }}>
-        <a href="/supplier/items/details">
-          <button className="btn btn-warning col-md-2 mx-3">
-            <i className="fa fa-eye"></i> View Supplier Items
-          </button>
-        </a>
-      </div>
+      <div className="container" style={{ textAlign: "right" }}></div>
 
       <div className="container bg-white p-3 mb-5 shadow  rounded mt-3 col-lg-10 ">
         <form>
@@ -67,12 +54,7 @@ export default function SupplierDetails() {
               />
             </div>
             <div className="col-md-8">
-              <h3>
-                Personal Details &nbsp;
-                <a href={`/update/supplier/details/${supplierId}`}>
-                  <i className="fa fa-edit text-success"></i>
-                </a>
-              </h3>
+              <h3>Personal Details &nbsp;</h3>
               <div className="form-group row mt-4 mx-5">
                 <label for="suppliername" className="col-lg-4 col-form-label">
                   <h5>Supplier Name : </h5>
@@ -81,7 +63,6 @@ export default function SupplierDetails() {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter Supplier Name"
                     name="supplierName"
                     value={supplierName}
                     disabled
@@ -97,7 +78,6 @@ export default function SupplierDetails() {
                     type="tel"
                     className="form-control"
                     name="phoneNumber"
-                    placeholder="Enter Phone Number"
                     pattern="[0-9]{10}"
                     value={supplierPno}
                     disabled
@@ -114,7 +94,6 @@ export default function SupplierDetails() {
                     className="form-control"
                     name="email"
                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-                    placeholder="Enter Email Address"
                     value={supplierEmail}
                     disabled
                   />
@@ -129,7 +108,6 @@ export default function SupplierDetails() {
                     type="text"
                     className="form-control"
                     name="location"
-                    placeholder="Enter Location"
                     value={supplierLocation}
                     disabled
                   />
@@ -143,7 +121,6 @@ export default function SupplierDetails() {
                   <textarea
                     className="form-control "
                     name="supplierItems"
-                    placeholder="Enter Supplier Items"
                     maxLength={"150"}
                     value={supplierItems}
                     disabled
@@ -154,6 +131,11 @@ export default function SupplierDetails() {
           </div>
           &nbsp;
         </form>
+      </div>
+      <div className="container">
+        <a href="/supplier/req" className="btn btn-outline-success">
+          Back
+        </a>
       </div>
     </div>
   );

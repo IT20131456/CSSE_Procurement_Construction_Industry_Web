@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import jwt_decode from "jwt-decode";
+import {ADD_ITEM_PATH,SUPPLIER_DETAILS_PATH} from '../constants/RestApi.const'
 
 export default function CreateSupplierItemsModal() {
   const [supplierDetails, setSupplierDetails] = useState([]);
@@ -42,7 +43,7 @@ export default function CreateSupplierItemsModal() {
     };
 //post data to the backend using axios
     console.log(data);
-    axios.post(`http://localhost:5000/add/item`, data).then((res) => {
+    axios.post(ADD_ITEM_PATH, data).then((res) => {
       if (res.data.success) {
         console.log(res.data);
         swal("Vacancy created successfully", "", "success");
@@ -68,7 +69,7 @@ export default function CreateSupplierItemsModal() {
     let name = supplierName;
 //Get data to the backend using axios
     axios
-      .get(`http://localhost:5000/supplier/details/${name}`)
+      .get(SUPPLIER_DETAILS_PATH + `${name}`)
       .then((response) => {
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setName(response.data.exsitingSupplierDetails[0].name);
