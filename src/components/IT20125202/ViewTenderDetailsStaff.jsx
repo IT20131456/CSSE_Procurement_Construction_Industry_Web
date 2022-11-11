@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import NavBar from '../IT20128036/supplier/NavBar'
 import swal from 'sweetalert'
+import { supplierDetails } from "../IT20128036/staff/AxiosCall";
 
 export default function ViewTenderDetailsStaff() {
 
@@ -19,6 +20,8 @@ export default function ViewTenderDetailsStaff() {
     actualAmount: 0,
     createdDate: ''
   })
+  const [suppliers, setSuppliers] = React.useState([]);
+  const [selectedSupplier, setSelectedSupplier] = React.useState('');
 
   React.useEffect(() => {
     document.title = "Tender Details"
@@ -38,6 +41,13 @@ export default function ViewTenderDetailsStaff() {
     }).catch((err) => {
       alert(err.message);
     })
+
+    supplierDetails().then((res) => {
+      if (res.data.success) {
+        setSuppliers(res.data.exsitingSupplierDetails);
+      }
+    });
+
   }, [id]);
 
   const onReject = () => {
@@ -55,6 +65,18 @@ export default function ViewTenderDetailsStaff() {
   const onApprove = () => {
     axios.patch(`http://localhost:5000/tender/update/${id}`, { status: "Waiting for a supplier" }).then((res) => {
       swal("Tender Approved!", "Tender has been approved successfully!", "success").then((value) => {
+        if (value) {
+          navigate('/staff/tenders');
+        }
+      });
+    }).catch((err) => {
+      alert(err.message);
+    })
+  }
+
+  const onAssign = () => {
+    axios.patch(`http://localhost:5000/tender/update/${id}`, { status: "In progress", acceptedSupplier: selectedSupplier }).then((res) => {
+      swal("Tender Assigned!", "Tender has been assigned successfully!", "success").then((value) => {
         if (value) {
           navigate('/staff/tenders');
         }
@@ -191,10 +213,29 @@ export default function ViewTenderDetailsStaff() {
             </div>
           )}
 
-          {tender.status !== 'Need approval' && (
+          {tender.status === 'Waiting for a supplier' && (
             <div>
-              <button className="btn btn-primary" onClick={() => navigate(`/staff/tenders`)}>Back to orders</button>
+              <hr />
+              <hr />
+              <div style={{ textAlign: 'center' }}>
+                <h5>Assign a supplier for this tender</h5>
+              </div>
+              <div style={{textAlign: 'center'}}>
+                <select id='supplierName' onChange={(e) => setSelectedSupplier(e.target.value)}>
+                  {suppliers.map((supplier) => (
+                    <option value={supplier.name}>{supplier.name}</option>
+                  ))}
+                </select>
+                <br /><br />
+                <div style={{ textAlign: 'center' }}>
+                  <button className='btn btn-primary' onClick={() => onAssign()}>Assign</button>
+                </div>
+                <br /><br />
+              </div>
             </div>
+          )}
+          {tender.status !== 'Waiting for a supplier' && tender.status !== 'Need approval' && (
+            <button className="btn btn-primary" onClick={() => navigate(`/staff/tenders`)}>Back to orders</button>
           )}
         </div>
       </div>
