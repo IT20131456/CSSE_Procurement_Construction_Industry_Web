@@ -81,7 +81,7 @@ export default function ViewTendersStaff() {
                                     <th scope="col">Site Manager Name</th>
                                     <th scope="col">Expected Budget (Rs.)</th>
                                     <th scope="col">Accepted Supplier</th>
-                                    <th scope="col">Actual Amount (Rs.)</th>
+                                    {/*<th scope="col">Actual Amount (Rs.)</th>*/}
                                     <th scope="col">Requested Date</th>
                                     <th scope="col">Status</th>
                                     <th scope="col"></th>
@@ -101,7 +101,7 @@ export default function ViewTendersStaff() {
                                             {tender.acceptedSupplier==="" && <span>{defaultValue}</span> }
                                             {tender.acceptedSupplier!=="" && <span>{tender.acceptedSupplier}</span> }
                                         </td>
-                                        <td>{tender.actualAmount}</td>
+                                        {/*<td>{tender.actualAmount}</td>*/}
                                         <td>{new Date(tender.createdDate).toString()}</td>
                                         <td>
                                             {tender.status === "Need approval" && <span style={{ color: 'orange' }}>{tender.status}</span>}
@@ -131,7 +131,7 @@ export default function ViewTendersStaff() {
                                             {tender.acceptedSupplier==="" && <span>{defaultValue}</span> }
                                             {tender.acceptedSupplier!=="" && <span>{tender.acceptedSupplier}</span> }
                                         </td>
-                                        <td>{tender.actualAmount}</td>
+                                        {/*<td>{tender.actualAmount}</td>*/}
                                         <td>{new Date(tender.createdDate).toString()}</td>
                                         <td>
                                             {tender.status === "Need approval" && <span style={{ color: 'orange' }}>{tender.status}</span>}
