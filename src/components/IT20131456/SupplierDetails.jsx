@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import swal from "sweetalert";
 import NavBar from "../IT20128036/supplier/NavBar";
+import {SUPPLIER_DETAILS_PATH} from '../constants/RestApi.const'
 
 export default function SupplierDetails() {
   const [supplierDetails, setSupplierDetails] = useState([]);
@@ -23,7 +25,7 @@ export default function SupplierDetails() {
     let name = supplierName;
 //Get data to the backend using axios
     axios
-      .get(`http://localhost:5000/supplier/details/${name}`)
+    .get(SUPPLIER_DETAILS_PATH + `${name}`)
       .then((response) => {
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setSupplierImage(response.data.exsitingSupplierDetails[0].image);

@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import jwt_decode from "jwt-decode";
 import NavBar from "../IT20128036/supplier/NavBar";
 import CreateItems from "./CreateSupplierItemsModal";
+import {SUPPLIER_DETAILS_PATH,GET_ALL_SUPPLIER_DETAILS_PATH,DELETE_SUPPLIER_DETAILS_PATH} from '../constants/RestApi.const'
 
 export default function SupplierItems() {
   const [supplierDetails, setSupplierDetails] = useState([]);
@@ -24,7 +26,7 @@ export default function SupplierItems() {
     let name = supplierName;
 
     axios
-      .get(`http://localhost:5000/supplier/details/${name}`)
+    .get(SUPPLIER_DETAILS_PATH + `${name}`)
       .then((response) => {
         setSupplierDetails(response.data.exsitingSupplierDetails);
         setName(response.data.exsitingSupplierDetails[0].name);
@@ -32,13 +34,13 @@ export default function SupplierItems() {
   }, [supplierName]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/items/getAll`).then((response) => {
+    axios.get(GET_ALL_SUPPLIER_DETAILS_PATH).then((response) => {
       setItems(response.data.exsitingItems);
     });
   }, []);
 
   const onDelete = (id) => {
-    axios.delete(`http://localhost:5000/item/delete/${id}`).then((res) => {
+    axios.delete(DELETE_SUPPLIER_DETAILS_PATH +`${id}`).then((res) => {
       if (res.data.success) {
         swal("Are you sure to delete this item?", "", "warning");
       }
