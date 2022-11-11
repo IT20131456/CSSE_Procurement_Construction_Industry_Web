@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import swal from "sweetalert";
 import NavBar from "../supplier/NavBar";
 import { useParams } from "react-router-dom";
 import { supplierProfile } from "./AxiosCall";
