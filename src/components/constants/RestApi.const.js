@@ -9,6 +9,9 @@ export const ITEM_UPDATE_PATH = BASED_URL +'/item/update/';
 export const SUPPLIER_PATH = BASED_URL +'/supplier/';
 export const UPDATE_SUPPLIER_DETAILS_PATH = BASED_URL +'/update/supplier/details/';
 
+export const USER_LOGIN = BASED_URL +'/supplier/login';
+export const USER_REGISTRATION = BASED_URL +'/supplier/registration';
+
 
 
 
