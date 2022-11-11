@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
-
+import {USER_LOGIN} from '../../constants/RestApi.const';
 import styles from "./styles.module.css";
 import NavBar from "./NavBar";
 
@@ -57,7 +57,7 @@ export default class UserLogin extends Component {
 
     if (validated) {
       axios
-        .post("http://localhost:5000/supplier/login", {
+        .post(USER_LOGIN, {
           name: user.name,
           password: user.password,
         })
