@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
+import { supplierDetails } from "./AxiosCall";
 
 //this function use to show approved suppliers
 export default function ApprovedSuppriers() {
@@ -10,7 +11,8 @@ export default function ApprovedSuppriers() {
 
   useEffect(() => {
     //retrivesupplier details
-    axios.get("http://localhost:5000/supplier/details/getAll").then((res) => {
+
+    supplierDetails().then((res) => {
       if (res.data.success) {
         setSupplier(res.data.exsitingSupplierDetails);
       }
@@ -25,7 +27,7 @@ export default function ApprovedSuppriers() {
     <div>
       <NavBar />
       <div className="container">
-        <h2 className="text-center"> Approved Suppliers</h2>
+        <h2 className="text-center mt-4 mb-4"> Approved Suppliers</h2>
 
         <div className="container border  border-secondary rounded-3 shadow-lg">
           <div className="row">
