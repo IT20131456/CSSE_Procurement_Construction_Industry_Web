@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import NavBar from "../IT20128036/supplier/NavBar";
+import {ITEM_GET_PATH,ITEM_UPDATE_PATH} from '../constants/RestApi.const'
 
 export default function SupplierDetails() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ export default function SupplierDetails() {
 
     //access backend data using axios
   useEffect(() => {
-    axios.get(`http://localhost:5000/item/get/${id}`).then((response) => {
+    axios.get(ITEM_GET_PATH +`${id}`).then((response) => {
       console.log(response.data.exsitingItems);
       setName(response.data.exsitingItems.supplierName);
       setItemName(response.data.exsitingItems.itemName);
@@ -37,7 +38,7 @@ export default function SupplierDetails() {
       price: price,
     };
 
-    axios.put(`http://localhost:5000/item/update/${id}`, data).then((res) => {
+    axios.put(ITEM_UPDATE_PATH +`${id}`, data).then((res) => {
       if (res.data.success) {
         swal("Items updated successfully", "", "success");
         setTimeout(() => {
