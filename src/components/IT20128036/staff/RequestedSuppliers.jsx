@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
+import { supplierDetails } from "./AxiosCall";
 
 //this function is use to view all registered suppliers details
 export default function RequestedSippliers() {
@@ -9,7 +10,7 @@ export default function RequestedSippliers() {
 
   useEffect(() => {
     //retrive all supplier detals
-    axios.get("http://localhost:5000/supplier/details/getAll").then((res) => {
+    supplierDetails().then((res) => {
       if (res.data.success) {
         setSupplier(res.data.exsitingSupplierDetails);
       }
