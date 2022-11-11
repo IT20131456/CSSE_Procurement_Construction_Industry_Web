@@ -4,6 +4,9 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import NavBar from "../supplier/NavBar";
 import swal from "sweetalert";
+import { specificProfile } from "./AxiosCall";
+import { AllItems } from "./AxiosCall";
+import { supplierUpdate } from "./AxiosCall";
 
 export default function CheckSupplier() {
   //get paraam id
@@ -28,7 +31,7 @@ export default function CheckSupplier() {
 
   useEffect(() => {
     //retrive specific supplier details
-    axios.get(`http://localhost:5000/supplier/${id}`).then((response) => {
+    specificProfile(id).then((response) => {
       setSupplierName(response.data.exsitingSupplierDetails.name);
 
       setSupplierLocation(response.data.exsitingSupplierDetails.location);
@@ -38,7 +41,7 @@ export default function CheckSupplier() {
 
   useEffect(() => {
     //retrive all items details
-    axios.get(`http://localhost:5000/items/getAll`).then((response) => {
+    AllItems().then((response) => {
       setItems(response.data.exsitingItems);
     });
   }, []);
@@ -51,16 +54,14 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific suppllier details
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Supplier Approved", "", "success");
-          setTimeout(() => {
-            window.location = "/supplier/req";
-          }, "3000");
-        }
-      });
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Supplier Approved", "", "success");
+        setTimeout(() => {
+          window.location = "/supplier/req";
+        }, "3000");
+      }
+    });
   };
 
   const decline = (e) => {
@@ -71,16 +72,14 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier details
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Supplier Restricted", "", "warning");
-          setTimeout(() => {
-            window.location = "/supplier/req";
-          }, "3000");
-        }
-      });
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Supplier Restricted", "", "warning");
+        setTimeout(() => {
+          window.location = "/supplier/req";
+        }, "3000");
+      }
+    });
   };
 
   const item1 = (e) => {
@@ -91,16 +90,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal(" Approved Successfully", "", "success");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal(" Approved Successfully", "", "success");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item2 = (e) => {
@@ -111,16 +109,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Approved Successfully", "", "success");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Approved Successfully", "", "success");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item3 = (e) => {
@@ -131,16 +128,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Approved Successfully", "", "success");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Approved Successfully", "", "success");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item4 = (e) => {
@@ -151,16 +147,14 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Approved Successfully", "", "success");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Approved Successfully", "", "success");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item1d = (e) => {
@@ -171,16 +165,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal(" Decline Item", "", "warning");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal(" Decline Item", "", "warning");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item2d = (e) => {
@@ -191,16 +184,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Decline Item", "", "warning");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Decline Item", "", "warning");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item3d = (e) => {
@@ -211,16 +203,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Decline Item", "", "warning");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Decline Item", "", "warning");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   const item4d = (e) => {
@@ -231,16 +222,15 @@ export default function CheckSupplier() {
 
     console.log(data);
     //update specific supplier data
-    axios
-      .put(`http://localhost:5000/update/supplier/details/${id}`, data)
-      .then((res) => {
-        if (res.data.success) {
-          swal("Decline Item", "", "warning");
-          setTimeout(() => {
-            window.location = `/supplier/check/${id}`;
-          }, "3000");
-        }
-      });
+
+    supplierUpdate(id, data).then((res) => {
+      if (res.data.success) {
+        swal("Decline Item", "", "warning");
+        setTimeout(() => {
+          window.location = `/supplier/check/${id}`;
+        }, "3000");
+      }
+    });
   };
 
   var imageBasePath =

@@ -4,6 +4,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import NavBar from "../supplier/NavBar";
 import { useParams } from "react-router-dom";
+import { supplierProfile } from "./AxiosCall";
 
 //this function is use to show specific supplier profile
 export default function ViewProfile() {
@@ -19,19 +20,16 @@ export default function ViewProfile() {
 
   useEffect(() => {
     //retrive specific supplier details
-    axios
-      .get(`http://localhost:5000/supplier/details/${id}`)
-      .then((response) => {
-        setSupplierName(response.data.exsitingSupplierDetails[0].name);
-        setSupplierDetails(response.data.exsitingSupplierDetails);
-        setSupplierImage(response.data.exsitingSupplierDetails[0].image);
-        setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
-        setSupplierItems(
-          response.data.exsitingSupplierDetails[0].supplierItems
-        );
-        setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
-        setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
-      });
+
+    supplierProfile(id).then((response) => {
+      setSupplierName(response.data.exsitingSupplierDetails[0].name);
+      setSupplierDetails(response.data.exsitingSupplierDetails);
+      setSupplierImage(response.data.exsitingSupplierDetails[0].image);
+      setSupplierLocation(response.data.exsitingSupplierDetails[0].location);
+      setSupplierItems(response.data.exsitingSupplierDetails[0].supplierItems);
+      setSupplierPno(response.data.exsitingSupplierDetails[0].mobile);
+      setSupplierEmail(response.data.exsitingSupplierDetails[0].email);
+    });
   }, []);
 
   var imageBasePath =
