@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import axios from "axios";
 import NavBar from "../supplier/NavBar";
 import { supplierDetails } from "./AxiosCall";
 
