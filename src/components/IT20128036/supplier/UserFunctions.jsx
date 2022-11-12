@@ -1,9 +1,10 @@
 //for registration
 import axios from "axios";
+import {USER_REGISTRATION} from '../../constants/RestApi.const'
 
 export const userRegister = (newUser) => {
   return axios
-    .post("http://localhost:5000/supplier/registration", {
+    .post(USER_REGISTRATION, {
       name: newUser.name,
       email: newUser.email,
       mobile: newUser.mobile,

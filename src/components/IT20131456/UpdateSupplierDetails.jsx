@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import NavBar from "../IT20128036/supplier/NavBar";
+import {SUPPLIER_PATH,UPDATE_SUPPLIER_DETAILS_PATH} from '../constants/RestApi.const'
 
 export default function SupplierDetails() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ export default function SupplierDetails() {
 
     //access backend data using axios
   useEffect(() => {
-    axios.get(`http://localhost:5000/supplier/${id}`).then((response) => {
+    axios.get(SUPPLIER_PATH +`${id}`).then((response) => {
       console.log(response.data.exsitingSupplierDetails);
       setSupplierName(response.data.exsitingSupplierDetails.name);
       setSupplierPno(response.data.exsitingSupplierDetails.mobile);
@@ -55,7 +56,7 @@ export default function SupplierDetails() {
       };
 
       axios
-        .put(`http://localhost:5000/update/supplier/details/${id}`, data)
+        .put(UPDATE_SUPPLIER_DETAILS_PATH + `${id}`, data)
         .then((res) => {
           if (res.data.success) {
             swal("Supplier Profile updated successfully", "", "success");

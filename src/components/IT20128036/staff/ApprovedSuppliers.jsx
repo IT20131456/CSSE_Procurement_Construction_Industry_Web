@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import axios from "axios";
 import NavBar from "../supplier/NavBar";
 import { supplierDetails } from "./AxiosCall";
 
@@ -88,6 +87,7 @@ export default function ApprovedSuppriers() {
             {/* page devide in 2 side and show supplier details */}
             <div className="col-sm-5 mx-2 me-2">
               {supplier.slice(secondColumnStart).map((data, index) => {
+                if (data.supstatus == "Approved")
                 return (
                   <div class="card mt-4 mb-4">
                     <div class="card-body">
